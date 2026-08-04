@@ -1,0 +1,184 @@
+/* Bar de scroll bas de page */
+#horizontal-bar {
+    position: fixed;
+    bottom: 0;
+    background-color: black;
+    border: 1px var(--lightbeige) solid;
+    height: 10px;
+    border-radius: 0 50px 50px 0;
+    z-index: 994;
+}
+/* Fin Bar de scroll bas de page */
+
+/* Accueil */
+header {
+    padding-top: 5%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    align-items: center;
+    justify-content: space-around;
+    background-color: var(--lightbeige);
+}
+
+header h1 {
+    text-align: center;
+    color: #000000;
+    font-size: 7em;
+    font-weight: 100;
+    white-space: pre-line;
+    opacity: 0;
+    transform: translateY(30px);
+    animation: apparition 1s 0.6s ease-out forwards;
+}
+
+#moi {
+    font-size: 2.5em;
+    width: 70%;
+    margin: auto;
+    text-align: center;
+    box-shadow: none;
+    opacity: 0;
+    transform: translateY(30px);
+    animation: apparition 1s 0.8s ease-out forwards;
+}
+
+#moi a {
+    color: var(--darkblue);
+    text-decoration-thickness: 2px;
+}
+
+#moi a:hover {
+    text-decoration-thickness: 5px;
+}
+
+.photos-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 250px;
+    margin: 0 auto;
+    margin-bottom: 50px;
+}
+
+.photos-container img {
+    display: block;
+    opacity: 0;
+    padding: 0 10px;
+    max-width: 100%;
+    height: auto;
+    margin: 0 auto;
+    transform: translateY(30px);
+    transition: opacity 0.5s ease-out;
+    animation: apparition 1s 0.9s ease-out forwards;
+}
+
+.photos-container img:hover {
+    opacity: 0.7 !important;
+    transition: all 0.5s ease-out;
+}
+/* Fin Accueil */
+
+/* Permet de gerer les différentes sections noir est blanches */
+.gauche {
+    background: var(--darkblue);
+    background: linear-gradient(
+        90deg,
+        rgba(2, 0, 36, 1) 0%,
+        rgba(0, 0, 0, 1) 100%
+    );
+    border-radius: 10px;
+    color: var(--lightbeige);
+    margin-left: 12px;
+}
+
+.droite {
+    background-color: var(--lightbeige);
+}
+
+.gauche,
+.droite {
+    padding: 5%;
+}
+
+.gauche .gauche-box h2 {
+    width: 40%;
+    font-size: 4em;
+    text-align: center;
+}
+
+.gauche .gauche-box {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    margin-bottom: 50px;
+}
+
+.droite .droite-box {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    margin-bottom: 50px;
+    flex-direction: row-reverse;
+}
+
+.gauche .p-gauche {
+    padding: 0 50px;
+    margin-left: 40%;
+    font-size: clamp(1.2rem, 2vw, 1.8rem);
+    text-align: justify;
+}
+
+.droite .p-droite {
+    margin-right: 40%;
+    margin-top: 5%;
+    font-size: clamp(1.2rem, 2vw, 1.8rem);
+}
+
+.droite .droite-box hr {
+    flex-grow: 1;
+    height: 3px;
+    background-color: black;
+    margin: 0 20px;
+}
+
+.gauche .gauche-box hr {
+    flex-grow: 1;
+    height: 2px;
+    background-color: white;
+    margin: 0 20px;
+    border: none;
+}
+
+.droite .droite-box h2 {
+    font-size: 4em;
+    width: 40%;
+    text-align: center;
+}
+
+.text-justify {
+    text-align: justify !important;
+}
+/* Fin Permet de gerer les différentes sections noir est blanches */
+
+/* effets d'apparitions des element de du site*/
+.reveal-apparition {
+    opacity: 0;
+    transform: translateY(-30px);
+}
+
+.reveal-visible {
+    opacity: 1;
+    transform: translateY(0);
+    transition: 1s cubic-bezier(0.54, 0.01, 0, 0.99);
+}
+/* Fin effets d'apparitions des element de du site*/
+
+@keyframes apparition {
+    100% {
+        opacity: 1;
+        transform: none;
+    }
+}
+

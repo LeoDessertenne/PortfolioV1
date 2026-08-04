@@ -1,0 +1,182 @@
+/* Projet */
+/* Styles pour l'accordéon */
+.accordion {
+    background-color: #343a40;
+    color: #ffffff;
+}
+
+.accordion-header {
+    font-family: "Manrope", sans-serif;
+}
+
+.collapsed {
+    background-color: rgb(6, 0, 152);
+}
+
+.accordion-button {
+    background-color: rgb(2, 0, 40);
+    color: #ffffff;
+    border: none;
+    font-size: 1.3rem;
+}
+
+.accordion-body {
+    background-color: rgb(1, 0, 37);
+}
+
+.accordion-body li::marker {
+    color: white;
+}
+
+.accordion-body ul li a {
+    color: #fff!important;
+    text-decoration: underline !important;
+}
+
+.accordion-body p {
+    color: #fff; /
+}
+
+.projets-container {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin-top: 50px;
+    flex-wrap: wrap;
+}
+
+.BUT-year {
+    margin: 30px 0;
+}
+
+.projets-container .projets-card {
+    position: relative;
+    background-size: cover;
+    background-position: center;
+    width: 400px;
+    height: 400px;
+    border-radius: 5px;
+    color: black;
+    display: flex;
+    justify-content: center;
+    align-items: end;
+    box-shadow: none;
+    transition: box-shadow 0.5s;
+    text-decoration: none;
+    margin: 10px;
+}
+
+
+.seville-card:hover {
+    transition: all 0.5s;
+    box-shadow: 0 0 50px 0 rgba(255, 235, 208, 0.7);
+}
+
+.bataille-de-boule-card:hover {
+    transition: all 0.5s;
+    box-shadow: 0 0 50px 0 rgba(176, 167, 255, 0.7);
+}
+
+.bdd-card:hover {
+    transition: all 0.5s;
+    box-shadow: 0 0 50px 0 rgba(255, 247, 180, 0.7);
+}
+.ihm-card:hover {
+    transition: all 0.5s;
+    box-shadow: 0 0 50px 0 rgba(255, 222, 74, 0.7);
+}
+
+.algo-card:hover {
+    transition: all 0.5s;
+    box-shadow: 0 0 50px 0 rgba(255, 255, 255, 0.7);
+}
+
+.pmp-card:hover {
+    transition: all 0.5s;
+    box-shadow: 0 0 50px 0 rgba(42, 217, 226, 0.7);
+}
+
+.la-card:hover {
+    transition: all 0.5s;
+    box-shadow: 0 0 50px 0 rgba(141, 211, 157, 0.7);
+}
+
+.optimisation-algo-card:hover {
+    transition: all 0.5s;
+    box-shadow: 0 0 50px 0 rgba(255, 193, 193, 0.7);
+}
+
+.idm-card:hover {
+    transition: all 0.5s;
+    box-shadow: 0 0 50px 0 rgba(181, 211, 128, 0.7);
+}
+
+.projets-container .projets-card .card-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    background-color: rgba(255, 255, 255, 0.4);
+    width: auto;
+    flex: 1;
+    text-align: center;
+    height: 100%;
+    backdrop-filter: blur(2px);
+    transition: opacity 0.25s, transform 0.25s, backdrop-filter .25s;
+    padding: 40px;
+    border-radius: 5px;
+}
+
+.projets-container .projets-card .card-container h2 {
+    font-size: clamp(2rem, 2.4107rem + 0.4762vw, 2.3rem);
+    padding-bottom: 10px;
+}
+
+.projets-container .projets-card .card-container p {
+    text-align: justify;
+    font-size: clamp(1.2rem, 2vw, 1.3rem);
+}
+
+.seville-card {
+    background-image: url("../Image/seville.png");
+}
+
+.bataille-de-boule-card {
+    background-image: url("../Image/bataille_de_boules.png");
+}
+
+.bdd-card {
+    background-image: url("../Image/bdd.png");
+}
+
+.ihm-card {
+    background-image: url("../Image/ihm.png");
+}
+
+.algo-card {
+    background-image: url("../Image/algo.png");
+}
+
+.pmp-card {
+    background-image: url("../Image/PimpMyPaids.png");
+}
+
+.la-card {
+    background-image: url("../Image/LA.png");
+}
+
+.idm-card {
+    background-image: url("../Image/idm.png");
+}
+
+.optimisation-algo-card {
+    background-image: url("../Image/opti-algo.png");
+}
+
+.projets-card:hover .card-container {
+    transform: none;
+    opacity: 1;
+    backdrop-filter: blur(30px);
+    transition: all 0.25s;
+}
+/* Fin Projet */
