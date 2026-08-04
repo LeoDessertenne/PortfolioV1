@@ -1,0 +1,159 @@
+/*Compétences*/
+.hard-soft-skills-container {
+    display: flex;
+}
+
+.skill-container-h3 {
+    flex: 1;
+    margin-right: 20px;
+}
+
+.title-skills {
+    font-size: 18px;
+    margin-bottom: 10px;
+}
+
+.soft-skills-container,
+.hard-skills-container {
+    border: 1px solid #ccc;
+    padding: 10px;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+}
+
+.skill {
+    margin-bottom: 5px;
+}
+
+.skill p {
+    margin: 0;
+    padding: 5px 10px;
+    background-color: #e0e0e0;
+    border-radius: 20px;
+    font-size: 14px;
+}
+
+.skill p:hover {
+    background-color: #c0c0c0;
+}
+
+.container-competences {
+    margin-top: 20px;
+}
+
+.container-competence {
+    margin-bottom: 20px;
+    border-left: 2px solid black;
+}
+
+.container-competence * {
+    text-align: left;
+}
+
+.container-competence h4 {
+    padding-left: 20px;
+}
+
+.detail-competence {
+    list-style: circle;
+    padding: 0;
+    text-align: left;
+    padding-left: 35px;
+}
+
+.detail-outil {
+    list-style: none;
+    padding: 0;
+    text-align: left;
+    display: flex;
+}
+
+.detail-outil li img {
+    height: 100px;
+    width: 100px;
+    text-align: center;
+}
+
+.detail-outil li {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin: 0 20px;
+    flex-wrap: wrap;
+}
+
+
+.container-competences {
+    display: grid;
+    gap: 20px;
+    grid-template-columns: repeat(3, 1fr);
+    margin: 50px 0;
+}
+
+.container-competence {
+    background: transparent;
+    color: black;
+    margin: 15px;
+    text-align: center;
+}
+
+.detail-competence li {
+    margin-bottom: 5px;
+}
+
+/* Réduire le nombre de colonnes à 2 par 2 sur les écrans moyens */
+@media screen and (max-width: 1200px) {
+    .container-competences {
+        grid-template-columns: repeat(2, 1fr);
+        border: 1px solid transparent;
+    }
+}
+
+/* Réduire le nombre de colonnes à 1 par 1 sur les écrans plus petits */
+@media screen and (max-width: 850px) {
+    .detail-outil {
+        flex-wrap: wrap;
+    }
+    .container-competences {
+        grid-template-columns: repeat(1, 1fr);
+        border: 1px solid transparent;
+    }
+
+    .container-competences h4 {
+        font-size: 20px;
+    }
+
+    .container-competence ul li {
+        text-align: justify;
+        font-size: 17px;
+    }
+
+    .hard-skills-container .skill p {
+        font-size: 2em;
+    }
+
+    .soft-skills-container .skill p {
+        font-size: 2em;
+    }
+}
+
+
+@media screen and (max-width: 480px) {
+
+
+    .container-competences h4 {
+        font-size: 20px;
+    }
+
+    .detail-outil {
+        flex-wrap: wrap;
+    }
+
+    .container-competence ul li {
+        text-align: justify;
+        font-size: 17px;
+    }
+}
+
+/* Fin Compétences */

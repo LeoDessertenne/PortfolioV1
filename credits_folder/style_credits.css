@@ -1,0 +1,60 @@
+.credits-all {
+    margin: 50px;
+}
+h1 {
+    margin-top: 50px;
+    font-size: 60px;
+}
+
+h2 {
+    font-size: 40px;
+}
+
+.credits-paragraph {
+    margin-left: 50px;
+}
+
+.credits-corps {
+    margin-left: 50px;
+}
+
+.credits-corps a {
+    display: block;
+    font-size: 15px;
+    margin-bottom: 10px;
+}
+
+.credits-corps p {
+    font-weight: bold;
+    font-size: 15px;
+}
+
+@media screen and (max-width: 1000px) {
+    .credits-corps a {
+        display: block;
+        font-size: 1em;
+    }
+    .credits-corps p {
+        font-weight: bold;
+        font-size: 1em;
+    }
+}
+
+
+@media screen and (max-width: 300px) {
+    h1 {
+        font-size: 50px;
+    }
+    
+    h2 {
+        font-size: 30px;
+    }
+    
+    .credits-parapgraph {
+        margin-left: 20px;
+    }
+    
+    .credits-corps {
+        margin-left: 20px;
+    }
+}

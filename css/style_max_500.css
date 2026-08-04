@@ -1,0 +1,92 @@
+@media screen and (max-width: 500px) {
+    .projets-container .projets-card .card-container {
+        background-color: rgba(255, 255, 255, 0.9);
+        padding: 15px;
+
+    }
+    .projets-container .projets-card .card-container p {
+        text-align: center;
+    }
+
+    header h1 {
+        font-size: 4em;
+    }
+
+    .projets-container {
+        margin-top: 15px;
+    }
+    .projets-container .projets-card {
+        width: 300px;
+        height: 300px;
+    }
+
+    .gauche {
+        margin: 0 15px;
+    }
+
+    .gauche .gauche-box,
+    .droite .droite-box{
+        margin-bottom: 20px;
+    }
+
+    .droite-box h2 {
+        margin-top: 1rem;
+    }
+
+    .projets-container .projets-card .card-container h2 {
+        font-size: 30px;
+    }
+
+    .projets-container .projets-card .card-container p {
+        font-size: 15px;
+    }
+
+    .title-skills {
+        font-size: 20px;
+    }
+
+    .skill p {
+        font-size: 15px;
+    }
+
+    #img-cv {
+        border-radius: 5px;
+        box-shadow: none;
+        transition: none;
+        object-fit: cover;
+        filter: grayscale(100%) brightness(60%) blur(0px);
+    }
+
+    #a-cv-container {
+        background-color: unset;
+        color: black;
+        padding: 10px 10px;
+        border-radius: 0;
+        font-size: 1em;
+        transition: none;
+    }
+    #a-cv-container:hover {
+        background-color: unset;
+        color: unset;
+        padding: unset;
+        border-radius: unset;
+        transition: none;
+    }
+
+    .centered:hover + #img-cv {
+        box-shadow: none;
+        transition: none;
+        filter: grayscale(100%) brightness(60%) blur(0px);
+    }
+
+
+    .container-outils li img {
+        width: 50px;
+        height: 50px;
+    }
+
+    .skill img {
+        width: 50px;
+        height: 50px;
+    }
+}
