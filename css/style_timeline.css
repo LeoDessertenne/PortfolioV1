@@ -58,7 +58,8 @@
     font-size: clamp(1.1rem, 2vw, 1.1rem);
     line-height: 30px;
     font-weight: 300;
-    text-align: justify;
+    text-align: left;
+    hyphens: auto;
 }
 
 .timeline-content .date {

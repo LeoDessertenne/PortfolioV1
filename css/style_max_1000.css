@@ -8,8 +8,14 @@
         font-size: 4em;
     }
 
+    #moi-role {
+        font-size: 1.2em;
+        width: 90%;
+    }
+
     #moi {
-        font-size: 2em;
+        font-size: 1.1em;
+        width: 90%;
     }
     .photos-container {
         width: 200px;
@@ -38,21 +44,13 @@
 
     .droite .p-droite {
         margin: 0;
-        text-align: justify;
+        text-align: left;
+        hyphens: auto;
         font-size: 30px;
         padding: 0 15px;
     }
 
     .hard-soft-skills-container {
         flex-direction: column;
-    }
-
-    #a-cv-container {
-        font-size: 10px;
-    }
-
-    #img-cv {
-        width: 70%;
-        height: 70%;
     }
 }
