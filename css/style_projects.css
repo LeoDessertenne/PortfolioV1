@@ -133,7 +133,8 @@
 }
 
 .projets-container .projets-card .card-container p {
-    text-align: justify;
+    text-align: left;
+    hyphens: auto;
     font-size: clamp(1.2rem, 2vw, 1.3rem);
 }
 
