@@ -37,7 +37,7 @@
         rgba(2, 0, 36, 1) 0%,
         rgba(0, 0, 0, 1) 100%
     );
-    color: white;
+    color: var(--lightbeige);
     border-radius: 10px;
     margin-bottom: 20px;
 }
@@ -146,6 +146,6 @@
         width: 95%;
     }
     .date {
-        color: white;
+        color: var(--lightbeige);
     }
 }
