@@ -155,15 +155,7 @@
     align-items: start;
 }
 
-.modal-content-container .skills,
-.modal-content-container .languages {
-    padding: clamp(1rem, 2.5vw, 1.25rem);
-    border-radius: var(--radius-md);
-    border: 1px solid rgba(255, 255, 255, 0.6);
-    background: rgba(255, 255, 255, 0.42);
-    box-shadow: var(--sheen-light);
-}
-
+/* Simples colonnes : pas de tuile claire imbriquée dans la modale */
 .modal-content-container .skills h3,
 .modal-content-container .languages h3 {
     margin-top: 0;

@@ -1,81 +1,37 @@
 /* ==========================================================================
    VERRE DÉPOLI — primitives réutilisables
-   Toute surface translucide du site descend de .glass ou .glass--dark.
+
+   Seules les surfaces sombres forment un panneau : les sections claires
+   reposent à même le fond crème. Le verre clair subsiste uniquement là où
+   quelque chose doit passer par-dessus le contenu — navbar, modales,
+   boutons — et non comme habillage de section.
    ========================================================================== */
 
-.glass,
 .glass--dark {
     position: relative;
     border-radius: var(--radius-lg);
-    border: 1px solid var(--glass-light-border);
-    background: var(--glass-light-bg);
-    box-shadow: var(--shadow-md), var(--sheen-light);
-    isolation: isolate;
-}
-
-.glass--dark {
-    border-color: var(--glass-dark-border);
+    border: 1px solid var(--glass-dark-border);
     background: var(--panel-dark);
     box-shadow: var(--shadow-lg), var(--sheen-dark);
     color: var(--text-on-dark-body);
+    isolation: isolate;
 }
 
-/* Le flou n'est appliqué que s'il est supporté : sans lui, les fonds
-   ci-dessus restent assez opaques pour que le texte demeure lisible. */
 @supports ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
-    .glass,
     .glass--dark {
         -webkit-backdrop-filter: blur(var(--blur-md)) saturate(var(--saturate));
         backdrop-filter: blur(var(--blur-md)) saturate(var(--saturate));
     }
-
-    .glass {
-        background: linear-gradient(
-            145deg,
-            rgba(255, 253, 246, 0.62),
-            rgba(255, 250, 234, 0.34)
-        );
-    }
-
-    /* Le navy reste dense : un panneau sombre trop translucide posé sur le
-       fond crème vire au gris-lavande et le texte devient illisible. */
-    .glass--dark {
-        background: var(--panel-dark);
-    }
-}
-
-/* Variantes d'intensité ------------------------------------------------- */
-
-.glass--soft {
-    box-shadow: var(--shadow-sm), var(--sheen-light);
-    border-radius: var(--radius-md);
-}
-
-.glass--raised {
-    box-shadow: var(--shadow-xl), var(--sheen-light);
-}
-
-.glass--dark.glass--raised {
-    box-shadow: var(--shadow-xl), var(--sheen-dark);
 }
 
 /* Reflet de bord supérieur : la « lumière » qui accroche le haut du panneau */
-.glass::before,
 .glass--dark::before {
     content: "";
     position: absolute;
     inset: 0;
     z-index: -1;
     border-radius: inherit;
-    background: linear-gradient(
-        160deg,
-        rgba(255, 255, 255, 0.28) 0%,
-        rgba(255, 255, 255, 0) 42%
-    );
     pointer-events: none;
-}
-
-.glass--dark::before {
     background: linear-gradient(
         160deg,
         rgba(255, 255, 255, 0.12) 0%,

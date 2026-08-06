@@ -45,16 +45,17 @@
 }
 
 @supports ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+    /* Flou très large plutôt qu'un fond opaque : à ce rayon, ce qui passe
+       derrière (le grand titre du hero, les panneaux navy) est réduit à
+       une nappe de couleur diffuse, donc les libellés restent lisibles
+       tout en laissant vivre le verre. */
     .custom-nav-links {
-        -webkit-backdrop-filter: blur(var(--blur-lg)) saturate(var(--saturate));
-        backdrop-filter: blur(var(--blur-lg)) saturate(var(--saturate));
-        /* Franchement opaque : la navbar passe au-dessus du grand titre du
-           hero et des panneaux navy, rien ne doit transparaître derrière
-           les libellés. Le flou ne sert plus qu'à adoucir les bords. */
+        -webkit-backdrop-filter: blur(var(--blur-nav)) saturate(190%);
+        backdrop-filter: blur(var(--blur-nav)) saturate(190%);
         background: linear-gradient(
             145deg,
-            rgba(255, 253, 246, 0.96),
-            rgba(255, 250, 234, 0.92)
+            rgba(255, 253, 246, 0.88),
+            rgba(255, 250, 234, 0.8)
         );
     }
 }

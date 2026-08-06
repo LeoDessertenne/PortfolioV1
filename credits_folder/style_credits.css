@@ -17,8 +17,7 @@
 }
 
 .credits-all {
-    padding: clamp(1.5rem, 4vw, 2.75rem);
-    border-radius: var(--radius-xl);
+    padding: clamp(1rem, 3vw, 2rem) 0;
 }
 
 .credits-all h1 {

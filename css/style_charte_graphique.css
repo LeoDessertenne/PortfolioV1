@@ -50,14 +50,8 @@
     --text-on-dark-body: rgba(255, 250, 234, 0.82);
     --text-on-dark-muted: rgba(255, 250, 234, 0.6);
 
-    /* --- Verre dépoli : surfaces claires --- */
-    --glass-light-bg: linear-gradient(
-        145deg,
-        rgba(255, 253, 246, 0.78),
-        rgba(255, 250, 234, 0.5)
-    );
+    /* --- Verre dépoli : surfaces claires (cartes projet, modales) --- */
     --glass-light-border: rgba(255, 255, 255, 0.7);
-    --glass-light-hairline: rgba(10, 9, 48, 0.08);
 
     /* --- Verre dépoli : surfaces sombres --- */
     /* Dégradé de référence des panneaux navy : proche du noir bleuté
@@ -74,6 +68,9 @@
     --blur-sm: 10px;
     --blur-md: 18px;
     --blur-lg: 28px;
+    /* Rayon dédié à la navbar : elle survole tout le contenu de la page,
+       il lui faut un flou plus large que les panneaux. */
+    --blur-nav: 40px;
     --saturate: 165%;
 
     /* --- Ombres --- */
