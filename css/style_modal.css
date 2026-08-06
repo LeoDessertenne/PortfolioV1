@@ -2,15 +2,34 @@
    MODALES PROJET — panneau en verre dépoli
    ========================================================================== */
 
-/* Arrière-plan flouté : c'est lui qui vend l'effet « frosted » */
-.modal-backdrop.show {
-    opacity: 1;
-    background: rgba(5, 4, 31, 0.45);
-}
-
-.modal.show {
+/* Arrière-plan flouté : c'est lui qui vend l'effet « frosted ».
+   La couleur et le flou sont portés par .modal-backdrop, jamais par
+   .show : sinon, à la fermeture, le retrait de .show fait sauter d'un
+   coup le rgba vers le noir opaque de Bootstrap et le flou disparaît
+   sèchement — c'est le flash sombre. Seule l'opacité doit varier. */
+.modal-backdrop {
+    background-color: rgba(4, 2, 28, 0.5);
     -webkit-backdrop-filter: blur(var(--blur-md)) saturate(120%);
     backdrop-filter: blur(var(--blur-md)) saturate(120%);
+    transition: opacity var(--dur-mid) var(--ease-out);
+}
+
+.modal-backdrop.show {
+    opacity: 1;
+}
+
+/* Le panneau accompagne le fondu du fond au lieu de disparaître avant lui */
+.modal.fade .modal-dialog {
+    transition:
+        transform var(--dur-mid) var(--ease-out),
+        opacity var(--dur-mid) var(--ease-out);
+    transform: translateY(1rem) scale(0.98);
+    opacity: 0;
+}
+
+.modal.show .modal-dialog {
+    transform: none;
+    opacity: 1;
 }
 
 .modal-dialog {

@@ -15,11 +15,7 @@
 
 .glass--dark {
     border-color: var(--glass-dark-border);
-    background: linear-gradient(
-        145deg,
-        rgba(13, 11, 77, 0.97),
-        rgba(5, 4, 31, 0.95)
-    );
+    background: var(--panel-dark);
     box-shadow: var(--shadow-lg), var(--sheen-dark);
     color: var(--text-on-dark-body);
 }
@@ -44,11 +40,7 @@
     /* Le navy reste dense : un panneau sombre trop translucide posé sur le
        fond crème vire au gris-lavande et le texte devient illisible. */
     .glass--dark {
-        background: linear-gradient(
-            145deg,
-            rgba(13, 11, 77, 0.94),
-            rgba(5, 4, 31, 0.9)
-        );
+        background: var(--panel-dark);
     }
 }
 
@@ -89,24 +81,6 @@
         rgba(255, 255, 255, 0.12) 0%,
         rgba(255, 255, 255, 0) 46%
     );
-}
-
-/* Halo coloré diffus derrière un panneau (effet « lumière au travers ») --- */
-.glass--halo::after {
-    content: "";
-    position: absolute;
-    inset: -1px;
-    z-index: -2;
-    border-radius: inherit;
-    background: linear-gradient(
-        135deg,
-        rgba(79, 70, 229, 0.35),
-        rgba(139, 92, 246, 0.18) 45%,
-        rgba(217, 164, 65, 0.28)
-    );
-    filter: blur(22px);
-    opacity: 0.55;
-    pointer-events: none;
 }
 
 /* ==========================================================================

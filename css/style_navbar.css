@@ -48,12 +48,13 @@
     .custom-nav-links {
         -webkit-backdrop-filter: blur(var(--blur-lg)) saturate(var(--saturate));
         backdrop-filter: blur(var(--blur-lg)) saturate(var(--saturate));
-        /* Assez opaque pour rester lisible aussi bien au-dessus des
-           panneaux crème que des panneaux navy. */
+        /* Franchement opaque : la navbar passe au-dessus du grand titre du
+           hero et des panneaux navy, rien ne doit transparaître derrière
+           les libellés. Le flou ne sert plus qu'à adoucir les bords. */
         background: linear-gradient(
             145deg,
-            rgba(255, 253, 246, 0.84),
-            rgba(255, 250, 234, 0.72)
+            rgba(255, 253, 246, 0.96),
+            rgba(255, 250, 234, 0.92)
         );
     }
 }

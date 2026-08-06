@@ -60,10 +60,12 @@
     --glass-light-hairline: rgba(10, 9, 48, 0.08);
 
     /* --- Verre dépoli : surfaces sombres --- */
-    --glass-dark-bg: linear-gradient(
+    /* Dégradé de référence des panneaux navy : proche du noir bleuté
+       d'origine (rgba(2,0,36) → noir), pas du violet. */
+    --panel-dark: linear-gradient(
         145deg,
-        rgba(13, 11, 77, 0.82),
-        rgba(5, 4, 31, 0.72)
+        rgba(4, 2, 48, 0.97),
+        rgba(2, 1, 16, 0.98)
     );
     --glass-dark-border: rgba(255, 255, 255, 0.14);
     --glass-dark-hairline: rgba(255, 255, 255, 0.1);
@@ -102,7 +104,7 @@
 
     /* --- Largeurs --- */
     --content-max: 1180px;
-    --measure: 68ch;
+    --measure: 65ch;
 
     /* --- Typographie --- */
     --font-display: "gallery_modernregular", "Manrope", sans-serif;
@@ -111,7 +113,7 @@
     --step-h2: clamp(2.4rem, 5vw, 4rem);
     --step-h3: clamp(1.35rem, 2vw, 1.75rem);
     --step-h4: clamp(1.1rem, 1.5vw, 1.35rem);
-    --step-lead: clamp(1.1rem, 1.4vw, 1.35rem);
+    --step-lead: clamp(1.2rem, 2vw, 1.7rem);
     --step-body: clamp(1rem, 1.1vw, 1.1rem);
     --step-small: 0.875rem;
 
