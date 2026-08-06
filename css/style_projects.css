@@ -1,44 +1,4 @@
 /* Projet */
-/* Styles pour l'accordéon */
-.accordion {
-    background-color: #343a40;
-    color: var(--lightbeige);
-}
-
-.accordion-header {
-    font-family: "Manrope", sans-serif;
-}
-
-.collapsed {
-    background-color: rgb(6, 0, 152);
-}
-
-.accordion-button {
-    background-color: rgb(2, 0, 40);
-    color: var(--lightbeige);
-    border: none;
-    font-size: 1.3rem;
-    font-weight: 500;
-}
-
-.accordion-body {
-    background-color: rgb(1, 0, 37);
-}
-
-.accordion-body li::marker {
-    color: var(--lightbeige);
-}
-
-.accordion-body ul li a {
-    color: var(--lightbeige) !important;
-    text-decoration: underline !important;
-}
-
-.accordion-body p {
-    color: var(--lightbeige);
-    font-weight: 300;
-    line-height: 1.6;
-}
 
 .projets-container {
     display: grid;
