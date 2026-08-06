@@ -105,6 +105,25 @@ header h1 {
     color: var(--lightbeige);
 }
 
+.gauche .hero-btn {
+    border-color: var(--lightbeige);
+    color: var(--lightbeige);
+}
+
+.gauche .hero-btn:hover {
+    background-color: var(--lightbeige);
+    color: var(--darkblue);
+}
+
+.gauche .hero-btn-primary {
+    background-color: var(--lightbeige);
+    color: var(--darkblue);
+}
+
+.gauche .hero-btn-primary:hover {
+    color: var(--darkblue);
+}
+
 .photos-container {
     display: flex;
     justify-content: center;
@@ -193,6 +212,13 @@ header h1 {
     hyphens: auto;
     line-height: 1.65;
     max-width: 65ch;
+}
+
+.p-balanced {
+    margin-left: auto !important;
+    margin-right: auto !important;
+    margin-top: 0 !important;
+    float: none;
 }
 
 .gauche .p-gauche p + p,

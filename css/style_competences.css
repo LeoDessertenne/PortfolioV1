@@ -69,9 +69,15 @@
 }
 
 .detail-outil li img {
-    height: 100px;
-    width: 100px;
-    text-align: center;
+    height: 56px;
+    width: 56px;
+    object-fit: contain;
+    filter: grayscale(1) brightness(0.4);
+    transition: filter 0.2s;
+}
+
+.detail-outil li:hover img {
+    filter: none;
 }
 
 .detail-outil li {
