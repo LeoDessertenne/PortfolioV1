@@ -1,17 +1,43 @@
-// Sélectionner l'élément du menu hamburger
+// Menu mobile : ouverture/fermeture du panneau de navigation.
+
 const menuHamburger = document.querySelector(".hamburger");
-
-// Sélectionner l'élément de navigation
 const nav = document.querySelector(".custom-nav");
-
-// Sélectionner les liens de navigation
 const navLinks = document.querySelector(".custom-nav-links");
 
-// Ajouter un écouteur d'événement de clic sur le menu hamburger
-menuHamburger.addEventListener('click', () => {
-  // Basculer la classe 'mobile-menu' pour afficher/cacher les liens de navigation sur les appareils mobiles
-  navLinks.classList.toggle('mobile-menu');
-  
-  // Basculer la classe 'nav-menu' pour afficher/cacher la barre de navigation sur les appareils mobiles
-  nav.classList.toggle('nav-menu');
+const setMenu = (open) => {
+    navLinks.classList.toggle("mobile-menu", open);
+    nav.classList.toggle("nav-menu", open);
+    menuHamburger.setAttribute("aria-expanded", String(open));
+    // Empêche le défilement de l'arrière-plan quand le panneau est ouvert.
+    document.body.style.overflow = open ? "hidden" : "";
+};
+
+menuHamburger.setAttribute("role", "button");
+menuHamburger.setAttribute("tabindex", "0");
+menuHamburger.setAttribute("aria-expanded", "false");
+menuHamburger.setAttribute("aria-controls", "custom-nav-links");
+navLinks.id = "custom-nav-links";
+
+const toggleMenu = () => setMenu(!navLinks.classList.contains("mobile-menu"));
+
+menuHamburger.addEventListener("click", toggleMenu);
+
+menuHamburger.addEventListener("keydown", (event) => {
+    if (event.key === "Enter" || event.key === " ") {
+        event.preventDefault();
+        toggleMenu();
+    }
+});
+
+// Refermer après navigation, sinon le panneau masque la section visée.
+navLinks.addEventListener("click", (event) => {
+    if (event.target.closest("a")) {
+        setMenu(false);
+    }
+});
+
+document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape" && navLinks.classList.contains("mobile-menu")) {
+        setMenu(false);
+    }
 });

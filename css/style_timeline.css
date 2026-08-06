@@ -1,45 +1,60 @@
-.ma-timeline {
-    background-color: var(--lightbeige);
-    font-family: "Manrope", sans-serif;
-}
+/* ==========================================================================
+   PARCOURS — timeline alternée, cartes navy en verre
+   ========================================================================== */
 
-.container {
-    min-height: 100vh;
+.timeline-shell {
     width: 100%;
     display: flex;
-    align-items: center;
     justify-content: center;
-    padding: 100px 0;
+    padding: var(--space-md) 0;
 }
 
 .timeline {
-    width: 80%;
-    height: auto;
-    max-width: 800px;
-    margin: 0 auto;
     position: relative;
-}
-
-.date {
-    color: black;
-    font-family: "Manrope", sans-serif;
+    width: 100%;
+    max-width: 860px;
+    margin: 0 auto;
 }
 
 .timeline ul {
     list-style: none;
-    padding-left: 0!important;
+    margin: 0;
+    padding-left: 0 !important;
 }
 
 .timeline ul li {
-    padding: 20px;
+    position: relative;
+    padding: clamp(1.25rem, 3vw, 1.75rem);
+    margin-bottom: var(--space-md);
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--glass-dark-border);
     background: linear-gradient(
-        90deg,
-        rgba(2, 0, 36, 1) 0%,
-        rgba(0, 0, 0, 1) 100%
+        145deg,
+        rgba(13, 11, 77, 0.86),
+        rgba(5, 4, 31, 0.78)
     );
-    color: var(--lightbeige);
-    border-radius: 10px;
-    margin-bottom: 20px;
+    box-shadow: var(--shadow-md), var(--sheen-dark);
+    color: var(--text-on-dark-body);
+    transition:
+        transform var(--dur-mid) var(--ease-out),
+        box-shadow var(--dur-mid) var(--ease-out);
+}
+
+@supports ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+    .timeline ul li {
+        -webkit-backdrop-filter: blur(var(--blur-md)) saturate(var(--saturate));
+        backdrop-filter: blur(var(--blur-md)) saturate(var(--saturate));
+        background: linear-gradient(
+            145deg,
+            rgba(13, 11, 77, 0.95),
+            rgba(5, 4, 31, 0.92)
+        );
+    }
+}
+
+.timeline ul li:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-lg), var(--sheen-dark);
 }
 
 .timeline ul li:last-child {
@@ -47,30 +62,56 @@
 }
 
 .timeline-content h2 {
-    font-weight: 500;
-    font-size: 35px;
-    line-height: 30px;
-    margin-bottom: 10px;
+    font-family: var(--font-body);
+    font-weight: 700;
+    font-size: clamp(1.25rem, 2.2vw, 1.6rem);
+    line-height: 1.25;
+    letter-spacing: -0.01em;
+    color: var(--text-on-dark);
+    margin-bottom: 0.5rem;
 }
 
 .timeline-content p {
-    padding-top: 10px;
-    font-size: clamp(1.1rem, 2vw, 1.1rem);
-    line-height: 30px;
+    font-size: 1rem;
+    line-height: 1.7;
     font-weight: 300;
     text-align: left;
     hyphens: auto;
+    text-wrap: pretty;
+    color: var(--text-on-dark-body);
+}
+
+.timeline-content a {
+    color: var(--cream-100);
+    font-weight: 600;
+    text-underline-offset: 3px;
+    text-decoration-color: rgba(255, 250, 234, 0.45);
+    transition: text-decoration-color var(--dur-fast) var(--ease-out);
+}
+
+.timeline-content a:hover {
+    text-decoration-color: var(--cream-100);
 }
 
 .timeline-content .date {
-    font-size: 14px;
-    font-weight: 100;
-    margin-bottom: 10px;
-    letter-spacing: 2px;
+    display: inline-block;
+    margin-bottom: 0.75rem;
+    padding: 0.2rem 0.75rem;
+    border-radius: var(--radius-pill);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    background: rgba(255, 255, 255, 0.08);
+    font-family: var(--font-body);
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-on-dark-muted);
 }
 
-@media only screen and (min-width: 768px) {
-    .timeline:before {
+/* --- Disposition alternée sur grand écran --- */
+
+@media only screen and (min-width: 800px) {
+    .timeline::before {
         content: "";
         position: absolute;
         top: 0;
@@ -78,74 +119,86 @@
         transform: translateX(-50%);
         width: 2px;
         height: 100%;
-        background-color: gray;
+        border-radius: var(--radius-pill);
+        background: linear-gradient(
+            to bottom,
+            transparent,
+            rgba(10, 9, 48, 0.22) 12%,
+            rgba(10, 9, 48, 0.22) 88%,
+            transparent
+        );
     }
 
     .timeline ul li {
-        width: 50%;
-        position: relative;
-        margin-bottom: 50px;
+        width: calc(50% - 2.25rem);
+        margin-bottom: var(--space-lg);
     }
 
     .timeline ul li:nth-child(odd) {
         float: left;
         clear: right;
-        transform: translateX(-50px);
-        border-radius: 20px 0 20px 20px;
+        border-top-right-radius: 4px;
     }
 
     .timeline ul li:nth-child(even) {
         float: right;
         clear: left;
-        transform: translateX(30px);
-        border-radius: 0 20px 20px 20px;
+        border-top-left-radius: 4px;
     }
 
+    /* Pastille lumineuse sur la colonne vertébrale */
     .timeline ul li::before {
         content: "";
         position: absolute;
-        height: 20px;
-        width: 20px;
-        border-radius: 0;
-        background-color: gray;
-        top: 0;
-        transform: rotate(45deg);
+        top: 2rem;
+        height: 14px;
+        width: 14px;
+        border-radius: 50%;
+        background: var(--ink-900);
+        border: 2px solid var(--cream-100);
+        box-shadow: 0 0 0 4px rgba(79, 70, 229, 0.18);
+        transition:
+            background-color var(--dur-fast) var(--ease-out),
+            box-shadow var(--dur-fast) var(--ease-out);
     }
 
     .timeline ul li:nth-child(odd)::before {
-        transform: translate(50%, -50%) rotate(45deg);
-        right: -50px;
+        right: -2.75rem;
+        transform: translateX(50%);
     }
 
     .timeline ul li:nth-child(even)::before {
-        transform: translate(-50%, -50%) rotate(45deg);
-        left: -30px;
-    }
-
-    .timeline-content .date {
-        position: absolute;
-        top: -30px;
+        left: -2.75rem;
+        transform: translateX(-50%);
     }
 
     .timeline ul li:hover::before {
-        background-color: #000000;
+        background: var(--accent-indigo);
+        box-shadow: 0 0 0 6px rgba(79, 70, 229, 0.28);
     }
-}
 
-@media screen and (max-width: 768px) {
-    .timeline-content h2 {
-        font-size: 25px;
+    /* Trait de liaison vers la colonne */
+    .timeline ul li::after {
+        content: "";
+        position: absolute;
+        top: calc(2rem + 6px);
+        width: 2.25rem;
+        height: 1px;
+        background: rgba(10, 9, 48, 0.22);
     }
-    .timeline-content p {
-        line-height: 25px;
+
+    .timeline ul li:nth-child(odd)::after {
+        right: -2.25rem;
     }
-    .container {
-        padding: 0 0;
+
+    .timeline ul li:nth-child(even)::after {
+        left: -2.25rem;
     }
-    .timeline {
-        width: 95%;
-    }
-    .date {
-        color: var(--lightbeige);
+
+    /* Purge du flottement pour ne pas casser le flux de la page */
+    .timeline ul::after {
+        content: "";
+        display: block;
+        clear: both;
     }
 }

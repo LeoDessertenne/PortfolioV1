@@ -1,60 +1,64 @@
+/* ==========================================================================
+   CRÉDITS
+   ========================================================================== */
+
+.credits-page {
+    width: 100%;
+    max-width: 900px;
+    margin: 0 auto;
+    padding: var(--space-lg) clamp(1rem, 4vw, 2rem) var(--space-xl);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-md);
+}
+
+.credits-page > .go-back {
+    align-self: flex-start;
+}
+
 .credits-all {
-    margin: 50px;
-}
-h1 {
-    margin-top: 50px;
-    font-size: 60px;
+    padding: clamp(1.5rem, 4vw, 2.75rem);
+    border-radius: var(--radius-xl);
 }
 
-h2 {
-    font-size: 40px;
-}
-
-.credits-paragraph {
-    margin-left: 50px;
+.credits-all h1 {
+    font-size: clamp(2.5rem, 8vw, 4rem);
+    margin-bottom: var(--space-md);
 }
 
 .credits-corps {
-    margin-left: 50px;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-md);
 }
 
-.credits-corps a {
+.credits-corps h2 {
+    font-size: clamp(1.6rem, 4vw, 2.2rem);
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid rgba(10, 9, 48, 0.12);
+}
+
+.credits-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+}
+
+.credits-group p {
+    margin-top: 0.6rem;
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: var(--text-strong);
+}
+
+.credits-group a {
     display: block;
-    font-size: 15px;
-    margin-bottom: 10px;
+    font-size: 0.85rem;
+    line-height: 1.6;
+    color: var(--ink-800);
+    text-underline-offset: 3px;
 }
 
-.credits-corps p {
-    font-weight: bold;
-    font-size: 15px;
-}
-
-@media screen and (max-width: 1000px) {
-    .credits-corps a {
-        display: block;
-        font-size: 1em;
-    }
-    .credits-corps p {
-        font-weight: bold;
-        font-size: 1em;
-    }
-}
-
-
-@media screen and (max-width: 300px) {
-    h1 {
-        font-size: 50px;
-    }
-    
-    h2 {
-        font-size: 30px;
-    }
-    
-    .credits-parapgraph {
-        margin-left: 20px;
-    }
-    
-    .credits-corps {
-        margin-left: 20px;
-    }
+.credits-group a:hover {
+    color: var(--accent-indigo);
 }
