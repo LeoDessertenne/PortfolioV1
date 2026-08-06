@@ -68,9 +68,12 @@
     --blur-sm: 10px;
     --blur-md: 18px;
     --blur-lg: 28px;
-    /* Rayon dédié à la navbar : elle survole tout le contenu de la page,
-       il lui faut un flou plus large que les panneaux. */
-    --blur-nav: 40px;
+    /* Rayon dédié à la navbar. Contre-intuitif : un rayon trop large
+       (40px et plus) dilue le fond au point qu'il ne reste plus aucune
+       couleur à laisser transparaître, et la pilule paraît opaque. C'est
+       le rayon modéré, associé à une saturation forte, qui donne l'effet
+       de verre dépoli. */
+    --blur-nav: 18px;
     --saturate: 165%;
 
     /* --- Ombres --- */

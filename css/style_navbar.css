@@ -6,22 +6,24 @@
     position: fixed;
     top: var(--space-sm);
     left: 50%;
-    transform: translateX(-50%) translateY(-10px);
+    transform: translateX(-50%);
     z-index: 900;
     display: flex;
     justify-content: center;
     width: max-content;
     max-width: calc(100% - 2rem);
-    opacity: 0;
-    /* Animation dédiée : `apparition` remettrait transform à none et
-       casserait le centrage translateX(-50%). */
-    animation: nav-apparition 1s 0.9s var(--ease-out) forwards;
+    /* `backwards` et non `forwards` : une animation d'opacité qui persiste
+       après sa fin fait de .custom-nav un « backdrop root », et le
+       backdrop-filter de la pilule n'a alors plus rien à flouter. En
+       partant de l'état de repos, l'animation cesse d'agir une fois
+       terminée et le verre redevient fonctionnel. */
+    animation: nav-apparition 1s 0.9s var(--ease-out) backwards;
 }
 
 @keyframes nav-apparition {
-    100% {
-        opacity: 1;
-        transform: translateX(-50%) translateY(0);
+    from {
+        opacity: 0;
+        transform: translateX(-50%) translateY(-10px);
     }
 }
 
@@ -45,17 +47,17 @@
 }
 
 @supports ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
-    /* Flou très large plutôt qu'un fond opaque : à ce rayon, ce qui passe
-       derrière (le grand titre du hero, les panneaux navy) est réduit à
-       une nappe de couleur diffuse, donc les libellés restent lisibles
-       tout en laissant vivre le verre. */
+    /* Rayon modéré + saturation forte + fond peu opaque : ce qui passe
+       derrière (titre du hero, panneaux navy) se réduit à une nappe de
+       couleur diffuse, visible sous la pilule sans jamais gêner la
+       lecture des libellés. */
     .custom-nav-links {
-        -webkit-backdrop-filter: blur(var(--blur-nav)) saturate(190%);
-        backdrop-filter: blur(var(--blur-nav)) saturate(190%);
+        -webkit-backdrop-filter: blur(var(--blur-nav)) saturate(180%);
+        backdrop-filter: blur(var(--blur-nav)) saturate(180%);
         background: linear-gradient(
             145deg,
-            rgba(255, 253, 246, 0.88),
-            rgba(255, 250, 234, 0.8)
+            rgba(255, 253, 246, 0.62),
+            rgba(255, 250, 234, 0.5)
         );
     }
 }

@@ -40,9 +40,7 @@
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;
-    opacity: 0;
-    transform: translateY(28px);
-    animation: apparition 1s 0.35s var(--ease-out) forwards;
+    animation: apparition 1s 0.35s var(--ease-out) backwards;
 }
 
 /* Bloc d'introduction : posé directement sur le fond, sans surface */
@@ -52,9 +50,7 @@
     flex-direction: column;
     align-items: center;
     gap: var(--space-md);
-    opacity: 0;
-    transform: translateY(28px);
-    animation: apparition 1s 0.55s var(--ease-out) forwards;
+    animation: apparition 1s 0.55s var(--ease-out) backwards;
 }
 
 #moi-role {
@@ -162,8 +158,7 @@
     text-transform: uppercase;
     color: var(--text-muted);
     text-decoration: none;
-    opacity: 0;
-    animation: apparition 1s 1s var(--ease-out) forwards;
+    animation: apparition 1s 1s var(--ease-out) backwards;
 }
 
 .hero-scroll span {
@@ -330,10 +325,15 @@
         transform var(--dur-slow) var(--ease-out);
 }
 
+/* Les animations d'entrée partent de cet état et reviennent au style
+   normal de l'élément. Elles s'utilisent avec animation-fill-mode:
+   backwards, jamais forwards : une animation d'opacité qui persiste après
+   sa fin maintient l'élément sur sa propre couche de compositing, ce qui
+   l'exclut du backdrop-filter de la navbar. */
 @keyframes apparition {
-    100% {
-        opacity: 1;
-        transform: none;
+    from {
+        opacity: 0;
+        transform: translateY(28px);
     }
 }
 
