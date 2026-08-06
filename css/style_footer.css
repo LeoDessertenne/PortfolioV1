@@ -45,14 +45,14 @@ footer p {
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 200px;
+    gap: 20px;
     margin: 20px auto;
 }
 
 .photos-container-footer img {
     display: block;
-    padding: 0 10px;
-    max-width: 100%;
-    height: auto;
-    margin: 0 auto;
+    width: 32px;
+    height: 32px;
+    object-fit: contain;
+    margin: 0;
 }
