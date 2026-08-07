@@ -103,7 +103,11 @@
     --space-2xl: 6rem;
 
     /* --- Largeurs --- */
-    --content-max: 1180px;
+    /* Plafond volontairement haut : les panneaux navy doivent longer les
+       bords de l'écran. C'est --measure qui garde le texte lisible, pas la
+       largeur de la coquille. Le plafond ne sert qu'aux écrans très larges. */
+    --content-max: 1600px;
+    --shell-gutter: clamp(0.75rem, 1.5vw, 1.5rem);
     --measure: 65ch;
 
     /* --- Typographie --- */

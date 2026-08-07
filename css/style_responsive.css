@@ -32,9 +32,9 @@
 
 /* --- Mobile --- */
 @media screen and (max-width: 560px) {
+    /* La gouttière est déjà minimale via --shell-gutter, on n'ajuste que
+       l'espacement vertical entre sections. */
     .page-shell {
-        padding-left: 0.75rem;
-        padding-right: 0.75rem;
         gap: var(--space-lg);
     }
 
