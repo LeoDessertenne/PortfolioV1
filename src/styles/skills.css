@@ -1,0 +1,129 @@
+/**
+ * Section Competences : qualites professionnelles, outils, langages.
+ * Portage de l'ancien css/style_competences.css.
+ */
+
+.container-competences {
+  display: grid;
+  gap: 20px;
+  grid-template-columns: repeat(3, 1fr);
+  margin: 50px 0;
+}
+
+.container-competence {
+  border-left: 2px solid black;
+  background: transparent;
+  color: black;
+  margin: 15px;
+  text-align: center;
+}
+
+.container-competence * {
+  text-align: left;
+}
+
+.container-competence h4 {
+  padding-left: 20px;
+}
+
+.detail-competence {
+  list-style: circle;
+  padding: 0;
+  text-align: left;
+  padding-left: 35px;
+}
+
+.detail-competence li {
+  margin-bottom: 5px;
+}
+
+.detail-outil {
+  list-style: none;
+  padding: 0;
+  text-align: left;
+  display: flex;
+}
+
+.detail-outil li {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin: 0 20px;
+  flex-wrap: wrap;
+}
+
+.detail-outil li img {
+  height: 56px;
+  width: 56px;
+  object-fit: contain;
+  filter: grayscale(1) brightness(0.4);
+  transition: filter 0.2s;
+}
+
+.detail-outil li:hover img {
+  filter: none;
+}
+
+/* Trois colonnes par defaut, deux sur ecrans moyens, une sur petits ecrans. */
+@media screen and (max-width: 1200px) {
+  .container-competences {
+    grid-template-columns: repeat(2, 1fr);
+    border: 1px solid transparent;
+  }
+}
+
+@media screen and (max-width: 850px) {
+  .detail-outil {
+    flex-wrap: wrap;
+  }
+
+  .container-competences {
+    grid-template-columns: repeat(1, 1fr);
+    border: 1px solid transparent;
+  }
+
+  .container-competences h4 {
+    font-size: 20px;
+  }
+
+  .container-competence ul li {
+    text-align: left;
+    hyphens: auto;
+    font-size: 17px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .container-competences h4 {
+    font-size: 20px;
+  }
+
+  .detail-outil {
+    flex-wrap: wrap;
+  }
+
+  .container-competence ul li {
+    text-align: left;
+    hyphens: auto;
+    font-size: 17px;
+  }
+}
+
+/* ------------------------------------------------------------- Etiquettes tech */
+
+.tech-tags {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px;
+  padding-left: 0 !important;
+}
+
+.tech-tags li {
+  list-style: none;
+  padding: 4px 14px;
+  border: 1px solid currentColor;
+  border-radius: 999px;
+  font-size: 0.95rem;
+}

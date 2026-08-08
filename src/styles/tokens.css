@@ -1,0 +1,93 @@
+/**
+ * Charte graphique : polices, couleurs, remise a zero et styles de base.
+ * Portage de l'ancien css/style_charte_graphique.css.
+ *
+ * Manrope est desormais auto-heberge par next/font (voir src/app/layout.tsx),
+ * ce qui supprime l'appel a fonts.googleapis.com. Gallery Modern reste une
+ * webfont locale servie depuis public/.
+ */
+
+@font-face {
+  font-family: "gallery_modernregular";
+  src: url("/Gallery/otherfontfiles/gallerymodern-webfont.ttf")
+    format("truetype");
+  font-weight: 100;
+}
+
+/* Alias des tokens Tailwind vers les noms historiques, utilises par tout le CSS
+   porte ci-dessous. Source de verite : le bloc @theme de globals.css. */
+:root {
+  --darkblue: var(--color-darkblue);
+  --lightbeige: var(--color-lightbeige);
+  --midbeige: var(--color-midbeige);
+  --darkbeige: var(--color-darkbeige);
+}
+
+/* ------------------------------------------------------- Barre de defilement */
+
+::-webkit-scrollbar {
+  width: 12px;
+}
+
+::-webkit-scrollbar-track {
+  background-color: var(--lightbeige);
+  width: 5px;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: var(--darkblue);
+  border-radius: 6px;
+  width: 15px;
+}
+
+::-webkit-scrollbar-button:start:decrement,
+::-webkit-scrollbar-button:end:increment {
+  display: none;
+}
+
+@media screen and (max-width: 500px) {
+  ::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+/* ------------------------------------------------------------ Styles de base */
+
+*,
+*::after,
+*::before {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--lightbeige);
+  font-family: var(--font-sans);
+}
+
+h1 {
+  font-family: var(--font-display);
+  font-weight: 100;
+}
+
+h2 {
+  font-family: var(--font-display);
+  font-weight: 100;
+}
+
+h4 {
+  font-size: 1.5em;
+}
+
+p {
+  font-family: var(--font-sans);
+}
+
+a {
+  cursor: pointer;
+}

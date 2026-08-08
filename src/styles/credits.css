@@ -1,0 +1,108 @@
+/**
+ * Page de credits (/credits).
+ * Portage des anciens credits_folder/style_credits.css et css/style_go_back.css.
+ *
+ * Les selecteurs h1 / h2 nus de l'ancienne feuille sont portes sous
+ * `.credits-all` : la page de credits etait un document isole, ils ne doivent
+ * pas fuiter vers la page d'accueil.
+ */
+
+.go-back {
+  margin: 50px 50px 0 50px;
+  padding: 10px 20px;
+  text-decoration: none;
+  color: black;
+  font-size: 1.7em;
+  border: 1px black solid;
+  display: inline-block;
+  border-radius: 100px;
+  transition:
+    border 0.2s,
+    color 0.2s,
+    background-color 0.2s;
+  font-family: var(--font-display);
+}
+
+.go-back:hover {
+  border: 1px white solid;
+  color: white;
+  background-color: black;
+  transition: all 0.2s;
+}
+
+@media screen and (max-width: 1500px) {
+  .go-back {
+    font-size: 2em;
+  }
+}
+
+.credits-all {
+  margin: 50px;
+}
+
+.credits-all h1 {
+  margin-top: 50px;
+  font-size: 60px;
+}
+
+.credits-all h2 {
+  font-size: 40px;
+}
+
+.credits-corps {
+  margin-left: 50px;
+}
+
+.credits-corps a {
+  display: block;
+  font-size: 15px;
+  margin-bottom: 10px;
+}
+
+.credits-corps p {
+  font-weight: bold;
+  font-size: 15px;
+}
+
+/**
+ * ATTENTION, coquille historique conservee volontairement.
+ * L'ancien HTML utilisait `credits-parapgraph` sur la plupart des blocs et
+ * `credits-paragraph` sur le seul bloc « Font ». L'ancienne feuille de style
+ * indentait la version correcte a 50px, et la version fautive a 20px sous 300px.
+ * Le rendu actuel decoule de cet ecart : il est reproduit tel quel.
+ * A corriger un jour, mais en connaissance de cause.
+ */
+.credits-paragraph {
+  margin-left: 50px;
+}
+
+@media screen and (max-width: 1000px) {
+  .credits-corps a {
+    display: block;
+    font-size: 1em;
+  }
+
+  .credits-corps p {
+    font-weight: bold;
+    font-size: 1em;
+  }
+}
+
+@media screen and (max-width: 300px) {
+  .credits-all h1 {
+    font-size: 50px;
+  }
+
+  .credits-all h2 {
+    font-size: 30px;
+  }
+
+  .credits-corps {
+    margin-left: 20px;
+  }
+
+  /* Orthographe fautive d'origine : voir la note plus haut. */
+  .credits-parapgraph {
+    margin-left: 20px;
+  }
+}
