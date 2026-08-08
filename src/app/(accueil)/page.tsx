@@ -13,10 +13,14 @@ import { Timeline } from "@/components/Timeline";
 export default function Home() {
   return (
     <>
+      <a href="#presentation" className="skip-link">
+        Aller au contenu
+      </a>
+
       <Navbar />
       <ScrollTopButton />
 
-      <div className="container-header-principal">
+      <div className="page-shell">
         <Hero />
         <Presentation />
         <Timeline />
@@ -24,8 +28,10 @@ export default function Home() {
         <Skills />
         <Objectives />
         <Contact />
-        <SiteFooter />
       </div>
+
+      {/* Hors de .page-shell : le pied de page occupe toute la largeur. */}
+      <SiteFooter />
 
       <RevealOnScroll />
     </>

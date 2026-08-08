@@ -1,60 +1,107 @@
-/**
- * Pied de page, partage entre la page d'accueil et la page de credits.
- * Portage de l'ancien css/style_footer.css.
- */
+/* Portage de css/style_footer.css de la branche feature/ui-glass. */
+/* ==========================================================================
+   PIED DE PAGE — panneau navy en verre
+   ========================================================================== */
 
 footer {
-  background: rgb(2, 0, 36);
-  background: linear-gradient(
-    0deg,
-    rgba(2, 0, 36, 1) 0%,
-    rgba(0, 0, 0, 1) 100%
-  );
-  color: white;
-  display: flex;
-  flex-direction: column;
-  text-align: center;
-  align-items: center;
-  padding: 0;
-  margin: 0;
-  box-sizing: border-box;
-  margin-top: 15px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: var(--space-sm);
+    margin-top: var(--space-lg);
+    padding: var(--space-lg) var(--space-md);
+    border-top: 1px solid var(--glass-dark-border);
+    background: linear-gradient(
+        180deg,
+        rgba(13, 11, 77, 0.9),
+        rgba(5, 4, 31, 0.96)
+    );
+    color: var(--text-on-dark-body);
+}
+
+@supports ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+    footer {
+        -webkit-backdrop-filter: blur(var(--blur-lg)) saturate(var(--saturate));
+        backdrop-filter: blur(var(--blur-lg)) saturate(var(--saturate));
+        background: linear-gradient(
+            180deg,
+            rgba(13, 11, 77, 0.96),
+            rgba(5, 4, 31, 0.98)
+        );
+    }
 }
 
 footer hr {
-  width: 50%;
-  background-color: rgb(100, 100, 100);
-  border: 0;
-  height: 1px;
+    width: min(60%, 480px);
+    height: 1px;
+    margin: var(--space-xs) 0;
+    border: 0;
+    opacity: 1;
+    background: linear-gradient(
+        to right,
+        transparent,
+        rgba(255, 250, 234, 0.28),
+        transparent
+    );
 }
 
 footer p {
-  margin: 20px 0;
+    margin: 0;
+    font-size: 0.85rem;
+    color: var(--text-on-dark-muted);
 }
 
 #credits {
-  margin: 20px 0;
-  color: white;
-  font-size: 16px;
+    color: var(--text-on-dark-body);
+    font-size: 0.9rem;
+    font-weight: 600;
+    text-decoration: none;
+    text-underline-offset: 4px;
+    transition: color var(--dur-fast) var(--ease-out);
 }
 
 #credits:hover {
-  color: rgb(216, 216, 216);
+    color: var(--cream-100);
+    text-decoration: underline;
 }
 
 .photos-container-footer {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 20px;
-  margin: 20px auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: var(--space-xs);
+    margin: 0;
+}
+
+.photos-container-footer a {
+    display: grid;
+    place-items: center;
+    width: 42px;
+    height: 42px;
+    border-radius: var(--radius-pill);
+    border: 1px solid rgba(255, 255, 255, 0.16);
+    background: rgba(255, 255, 255, 0.07);
+    transition:
+        transform var(--dur-fast) var(--ease-out),
+        background-color var(--dur-fast) var(--ease-out);
+}
+
+.photos-container-footer a:hover {
+    transform: translateY(-3px);
+    background: rgba(255, 255, 255, 0.18);
 }
 
 .photos-container-footer img {
-  display: block;
-  width: 32px;
-  height: 32px;
-  object-fit: contain;
-  margin: 0;
-  filter: invert(1);
+    display: block;
+    width: 20px;
+    height: 20px;
+    object-fit: contain;
+    filter: invert(1);
+    opacity: 0.8;
+    transition: opacity var(--dur-fast) var(--ease-out);
+}
+
+.photos-container-footer a:hover img {
+    opacity: 1;
 }

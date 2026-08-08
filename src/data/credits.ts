@@ -8,19 +8,12 @@ export type CreditLink = {
 
 export type CreditSection = {
   heading: string;
-  /**
-   * ATTENTION : `credits-parapgraph` est une coquille presente dans le HTML
-   * d'origine, et la feuille de style la cible telle quelle sous 300px. La
-   * conserver evite de modifier le rendu de la page. Voir styles/credits.css.
-   */
-  blockClassName: "credits-parapgraph" | "credits-paragraph";
   links: CreditLink[];
 };
 
 export const creditSections: CreditSection[] = [
   {
     heading: "Flaticon :",
-    blockClassName: "credits-parapgraph",
     links: [
       {
         label: "image travail d'équipe \"cotravail\": photo3idea_studio",
@@ -86,7 +79,6 @@ export const creditSections: CreditSection[] = [
   },
   {
     heading: "fontawesome",
-    blockClassName: "credits-parapgraph",
     links: [
       {
         label: "pdf icon:",
@@ -103,7 +95,6 @@ export const creditSections: CreditSection[] = [
   },
   {
     heading: "Font :",
-    blockClassName: "credits-paragraph",
     links: [
       {
         label: "Gallery modern",
@@ -114,7 +105,6 @@ export const creditSections: CreditSection[] = [
   },
   {
     heading: "Image",
-    blockClassName: "credits-parapgraph",
     links: [
       { href: "https://git-scm.com/downloads/logos", text: "Git" },
       {

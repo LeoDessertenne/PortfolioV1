@@ -1,129 +1,122 @@
-/**
- * Section Competences : qualites professionnelles, outils, langages.
- * Portage de l'ancien css/style_competences.css.
- */
+/* Portage de css/style_competences.css de la branche feature/ui-glass. */
+/* ==========================================================================
+   COMPÉTENCES — tuiles en verre
+   ========================================================================== */
+
+.competences-group-title {
+    margin: var(--space-lg) 0 var(--space-sm);
+    font-family: var(--font-body);
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+}
+
+.competences-group-title::after {
+    content: "";
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(to right, rgba(10, 9, 48, 0.2), transparent);
+}
 
 .container-competences {
-  display: grid;
-  gap: 20px;
-  grid-template-columns: repeat(3, 1fr);
-  margin: 50px 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(260px, 100%), 1fr));
+    gap: var(--space-sm);
+    margin: 0 0 var(--space-md);
 }
 
+/* Pas de surface : juste un filet vertical, comme dans le design d'origine */
 .container-competence {
-  border-left: 2px solid black;
-  background: transparent;
-  color: black;
-  margin: 15px;
-  text-align: center;
-}
-
-.container-competence * {
-  text-align: left;
+    display: flex;
+    flex-direction: column;
+    gap: 0.9rem;
+    margin: 0;
+    padding: 0.25rem 0 0.25rem 1.25rem;
+    text-align: left;
+    border-left: 2px solid rgba(10, 9, 48, 0.35);
+    color: var(--text-body);
 }
 
 .container-competence h4 {
-  padding-left: 20px;
+    padding: 0;
+    font-size: 1rem;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+    color: var(--text-strong);
 }
+
+.container-competence * {
+    text-align: left;
+}
+
+/* --- Listes de langages / savoir-faire --- */
 
 .detail-competence {
-  list-style: circle;
-  padding: 0;
-  text-align: left;
-  padding-left: 35px;
+    list-style: none;
+    padding: 0;
+    margin: 0;
 }
 
-.detail-competence li {
-  margin-bottom: 5px;
-}
+/* --- Grille d'outils --- */
 
 .detail-outil {
-  list-style: none;
-  padding: 0;
-  text-align: left;
-  display: flex;
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-sm);
+    list-style: none;
+    padding: 0;
+    margin: 0;
 }
 
 .detail-outil li {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  margin: 0 20px;
-  flex-wrap: wrap;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 0.5rem;
+    width: 88px;
+    margin: 0;
+    text-align: center;
 }
 
+/* Logos affichés dans leur état naturel : ils ne sont pas cliquables,
+   donc rien ne doit réagir au survol. */
 .detail-outil li img {
-  height: 56px;
-  width: 56px;
-  object-fit: contain;
-  filter: grayscale(1) brightness(0.4);
-  transition: filter 0.2s;
+    height: 48px;
+    width: 48px;
+    object-fit: contain;
 }
 
-.detail-outil li:hover img {
-  filter: none;
+.detail-outil li p {
+    font-size: 0.75rem;
+    line-height: 1.3;
+    color: var(--text-muted);
+    text-align: center !important;
+    text-wrap: balance;
 }
 
-/* Trois colonnes par defaut, deux sur ecrans moyens, une sur petits ecrans. */
-@media screen and (max-width: 1200px) {
-  .container-competences {
-    grid-template-columns: repeat(2, 1fr);
-    border: 1px solid transparent;
-  }
+/* --- Paliers de maîtrise (Quotidien / Projet / Notions) --- */
+
+.skill-tiers .container-competence h4::before {
+    content: "";
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    margin-right: 0.55rem;
+    border-radius: 50%;
+    background: var(--accent-indigo);
+    vertical-align: middle;
 }
 
-@media screen and (max-width: 850px) {
-  .detail-outil {
-    flex-wrap: wrap;
-  }
-
-  .container-competences {
-    grid-template-columns: repeat(1, 1fr);
-    border: 1px solid transparent;
-  }
-
-  .container-competences h4 {
-    font-size: 20px;
-  }
-
-  .container-competence ul li {
-    text-align: left;
-    hyphens: auto;
-    font-size: 17px;
-  }
+.skill-tiers .container-competence:nth-child(2) h4::before {
+    background: var(--accent-violet);
 }
 
-@media screen and (max-width: 480px) {
-  .container-competences h4 {
-    font-size: 20px;
-  }
-
-  .detail-outil {
-    flex-wrap: wrap;
-  }
-
-  .container-competence ul li {
-    text-align: left;
-    hyphens: auto;
-    font-size: 17px;
-  }
-}
-
-/* ------------------------------------------------------------- Etiquettes tech */
-
-.tech-tags {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  gap: 8px;
-  padding-left: 0 !important;
-}
-
-.tech-tags li {
-  list-style: none;
-  padding: 4px 14px;
-  border: 1px solid currentColor;
-  border-radius: 999px;
-  font-size: 0.95rem;
+.skill-tiers .container-competence:nth-child(3) h4::before {
+    background: var(--accent-amber);
 }

@@ -69,7 +69,7 @@ export function ProjectModal({
             <a
               key={link.href}
               href={link.href}
-              className="project-btn-link"
+              className="btn-glass"
               target="_blank"
               rel="noopener noreferrer"
             >

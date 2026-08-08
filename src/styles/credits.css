@@ -1,108 +1,107 @@
-/**
- * Page de credits (/credits).
- * Portage des anciens credits_folder/style_credits.css et css/style_go_back.css.
- *
- * Les selecteurs h1 / h2 nus de l'ancienne feuille sont portes sous
- * `.credits-all` : la page de credits etait un document isole, ils ne doivent
- * pas fuiter vers la page d'accueil.
- */
+/* Portage de css/style_go_back.css et credits_folder/style_credits.css
+   de la branche feature/ui-glass.
+
+   La coquille `credits-parapgraph` / `credits-paragraph` de l ancien site a
+   disparu : les deux blocs sont desormais une seule classe `.credits-group`. */
+/* ==========================================================================
+   BOUTON RETOUR
+   ========================================================================== */
 
 .go-back {
-  margin: 50px 50px 0 50px;
-  padding: 10px 20px;
-  text-decoration: none;
-  color: black;
-  font-size: 1.7em;
-  border: 1px black solid;
-  display: inline-block;
-  border-radius: 100px;
-  transition:
-    border 0.2s,
-    color 0.2s,
-    background-color 0.2s;
-  font-family: var(--font-display);
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.6rem 1.4rem;
+    border-radius: var(--radius-pill);
+    border: 1px solid rgba(2, 0, 58, 0.22);
+    background: linear-gradient(
+        145deg,
+        rgba(255, 255, 255, 0.66),
+        rgba(255, 250, 234, 0.3)
+    );
+    -webkit-backdrop-filter: blur(var(--blur-sm)) saturate(var(--saturate));
+    backdrop-filter: blur(var(--blur-sm)) saturate(var(--saturate));
+    box-shadow: var(--shadow-sm), var(--sheen-light);
+    color: var(--text-strong);
+    font-family: var(--font-body);
+    font-size: 1rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition:
+        transform var(--dur-fast) var(--ease-out),
+        box-shadow var(--dur-fast) var(--ease-out);
+}
+
+.go-back::before {
+    content: "←";
 }
 
 .go-back:hover {
-  border: 1px white solid;
-  color: white;
-  background-color: black;
-  transition: all 0.2s;
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md), var(--sheen-light);
+    color: var(--text-strong);
 }
 
-@media screen and (max-width: 1500px) {
-  .go-back {
-    font-size: 2em;
-  }
+/* ==========================================================================
+   CRÉDITS
+   ========================================================================== */
+
+.credits-page {
+    width: 100%;
+    max-width: 900px;
+    margin: 0 auto;
+    padding: var(--space-lg) clamp(1rem, 4vw, 2rem) var(--space-xl);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-md);
+}
+
+.credits-page > .go-back {
+    align-self: flex-start;
 }
 
 .credits-all {
-  margin: 50px;
+    padding: clamp(1rem, 3vw, 2rem) 0;
 }
 
 .credits-all h1 {
-  margin-top: 50px;
-  font-size: 60px;
-}
-
-.credits-all h2 {
-  font-size: 40px;
+    font-size: clamp(2.5rem, 8vw, 4rem);
+    margin-bottom: var(--space-md);
 }
 
 .credits-corps {
-  margin-left: 50px;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-md);
 }
 
-.credits-corps a {
-  display: block;
-  font-size: 15px;
-  margin-bottom: 10px;
+.credits-corps h2 {
+    font-size: clamp(1.6rem, 4vw, 2.2rem);
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid rgba(10, 9, 48, 0.12);
 }
 
-.credits-corps p {
-  font-weight: bold;
-  font-size: 15px;
+.credits-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
 }
 
-/**
- * ATTENTION, coquille historique conservee volontairement.
- * L'ancien HTML utilisait `credits-parapgraph` sur la plupart des blocs et
- * `credits-paragraph` sur le seul bloc « Font ». L'ancienne feuille de style
- * indentait la version correcte a 50px, et la version fautive a 20px sous 300px.
- * Le rendu actuel decoule de cet ecart : il est reproduit tel quel.
- * A corriger un jour, mais en connaissance de cause.
- */
-.credits-paragraph {
-  margin-left: 50px;
+.credits-group p {
+    margin-top: 0.6rem;
+    font-size: 0.85rem;
+    font-weight: 700;
+    color: var(--text-strong);
 }
 
-@media screen and (max-width: 1000px) {
-  .credits-corps a {
+.credits-group a {
     display: block;
-    font-size: 1em;
-  }
-
-  .credits-corps p {
-    font-weight: bold;
-    font-size: 1em;
-  }
+    font-size: 0.85rem;
+    line-height: 1.6;
+    color: var(--ink-800);
+    text-underline-offset: 3px;
 }
 
-@media screen and (max-width: 300px) {
-  .credits-all h1 {
-    font-size: 50px;
-  }
-
-  .credits-all h2 {
-    font-size: 30px;
-  }
-
-  .credits-corps {
-    margin-left: 20px;
-  }
-
-  /* Orthographe fautive d'origine : voir la note plus haut. */
-  .credits-parapgraph {
-    margin-left: 20px;
-  }
+.credits-group a:hover {
+    color: var(--accent-indigo);
 }

@@ -25,21 +25,29 @@ Une page annexe `/credits` regroupe les crédits des ressources utilisées.
 - **React 19** et **TypeScript** en mode strict
 - **Tailwind CSS 4** pour les tokens de la charte graphique et les utilitaires
 - **CSS applicatif** découpé par composant, chargé par bundle de page
-- Polices auto-hébergées : _Manrope_ (via `next/font`) et _Gallery Modern_ (webfont locale)
+- Polices auto-hébergées : _Manrope_ (variable, via `next/font`) et _Gallery Modern_ (webfont locale)
 - Déploiement automatisé par **GitHub Actions** vers GitHub Pages
 
 Le site ne charge aucune ressource tierce à l'exécution : ni CDN, ni Google Fonts, ni script externe.
 
-## Charte graphique
+## Design
 
-Les couleurs sont centralisées dans `src/styles/theme.css` :
+Interface « verre dépoli » : un socle crème parcouru d'une nappe de dégradés
+fixe, sur lequel se détachent des panneaux navy translucides. Les surfaces qui
+passent au-dessus du contenu (navigation, modales, boutons) sont floutées au
+`backdrop-filter`, ce qui laisse deviner ce qui défile derrière.
 
-| Variable       | Valeur              |
-| -------------- | ------------------- |
-| `--darkblue`   | `rgba(2, 0, 58, 1)` |
-| `--lightbeige` | `#fffaea`           |
-| `--midbeige`   | `#ccc8bb`           |
-| `--darkbeige`  | `#727069`           |
+Les couleurs de marque sont centralisées dans `src/styles/theme.css` :
+
+| Variable       | Valeur    |
+| -------------- | --------- |
+| `--darkblue`   | `#02003a` |
+| `--lightbeige` | `#fffaea` |
+| `--midbeige`   | `#ccc8bb` |
+| `--darkbeige`  | `#727069` |
+
+Le reste du système (échelles navy et crème, verre, ombres, rayons, espacements,
+typographie fluide, courbes d'animation) vit dans `src/styles/tokens.css`.
 
 ## Contact
 

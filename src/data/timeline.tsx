@@ -9,9 +9,6 @@ export type TimelineEntry = {
   body: ReactNode;
 };
 
-/** Style des liens places dans le corps sombre de la timeline. */
-const linkStyle = { color: "var(--lightbeige)", fontWeight: 600 } as const;
-
 export const timeline: TimelineEntry[] = [
   {
     period: "2023 - Aujourd'hui",
@@ -19,12 +16,7 @@ export const timeline: TimelineEntry[] = [
     body: (
       <>
         En tant qu&apos;apprenti au sein de l&apos;entreprise{" "}
-        <a
-          href={site.employer.url}
-          target="_blank"
-          rel="noopener noreferrer"
-          style={linkStyle}
-        >
+        <a href={site.employer.url} target="_blank" rel="noopener noreferrer">
           IDM Group
         </a>
         , j&apos;ai rejoint l&apos;équipe qui développe les sites des grands
@@ -58,9 +50,7 @@ export const timeline: TimelineEntry[] = [
         programmation, avec un fort accent mis sur les projets. J&apos;ai obtenu
         mon BUT en codiplomation avec l&apos;ESIEE Paris. Je vous invite
         d&apos;ailleurs à découvrir quelques-uns de ces projets{" "}
-        <a href="#h-projets" style={linkStyle}>
-          ici
-        </a>
+        <a href="#h-projets">ici</a>
         .
       </>
     ),

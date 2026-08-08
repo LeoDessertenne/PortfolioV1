@@ -8,16 +8,14 @@ import { site } from "@/lib/site";
 // credits ne doit pas recevoir le reboot de Bootstrap.
 
 /**
- * Manrope est desormais auto-hebergee : plus aucun appel a fonts.googleapis.com
- * au chargement de la page.
+ * Manrope est auto-hebergee : plus aucun appel a fonts.googleapis.com.
  *
- * Une seule graisse (400) est chargee, comme le faisait l'ancienne feuille de
- * style. Le CSS demande par endroits des graisses 100 a 700 : le navigateur les
- * synthetise a partir de la 400. Charger les vraies graisses changerait le rendu
- * du texte, c'est donc volontairement laisse en l'etat.
+ * Aucune graisse n'est precisee, ce qui charge la police variable et couvre
+ * tout l'axe 200..800, comme la requete Google Fonts du design. Le CSS demande
+ * des graisses de 300 a 700 : elles sont donc rendues avec les vrais dessins,
+ * et non synthetisees.
  */
 const manrope = Manrope({
-  weight: "400",
   subsets: ["latin", "latin-ext"],
   display: "swap",
   variable: "--font-manrope",
@@ -73,6 +71,8 @@ export const metadata: Metadata = {
 export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
+  // Teinte le chrome du navigateur sur mobile avec le creme du socle.
+  themeColor: "#fffaea",
 };
 
 /**

@@ -35,7 +35,8 @@ export function ProjectCard({
               <li key={tag}>{tag}</li>
             ))}
           </ul>
-          <p className="projets-plus-infos">Voir le projet →</p>
+          {/* La fleche est ajoutee en ::after pour pouvoir l'animer au survol. */}
+          <p className="projets-plus-infos">Voir le projet</p>
         </div>
       </button>
     </div>

@@ -3,36 +3,20 @@
  * Copyright 2011-2024 The Bootstrap Authors
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
  *
- * Le portfolio ne chargeait de Bootstrap que quatre choses : la grille `.container`
- * (utilisee par la timeline), les utilitaires `.fs-3` / `.fs-4`, le systeme de
- * modale et le bouton `.btn-close`. Ces regles sont copiees verbatim depuis
- * bootstrap.css pour garantir un rendu identique, et le reste du framework
- * (240 ko de CSS, 80 ko de JS, Popper) a ete supprime.
+ * Du framework, il ne reste que le systeme de modale et le bouton `.btn-close`,
+ * copies verbatim depuis bootstrap.css. Tout le reste (240 ko de CSS, 80 ko de
+ * JS, Popper) a ete supprime.
  *
- * La grille `.container` n'apparait pas ici : elle ne servait qu'a la timeline,
- * ses regles ont donc ete fusionnees dans `.timeline-viewport` (timeline.css).
- * Le comportement JS de la modale est reimplemente dans src/components/Modal.tsx.
+ * Le design « verre depoli » a rendu inutiles les deux autres emprunts de
+ * l'ancienne version : la grille `.container` (remplacee par `.timeline-shell`)
+ * et les utilitaires `.fs-3` / `.fs-4` (remplaces par `.section-lead` et
+ * `.BUT-year`). Le reboot, lui, reste necessaire : les marges des titres,
+ * paragraphes et listes en dependent toujours.
+ *
+ * L'habillage de la modale vit dans src/styles/modal.css et son comportement
+ * JS est reimplemente dans src/components/Modal.tsx.
  * Ne pas modifier a la main : ce fichier est un extrait, pas du code applicatif.
  */
-
-/* ------------------------------------------------- Utilitaires de typographie */
-
-.fs-3 {
-  font-size: calc(1.3rem + 0.6vw) !important;
-}
-
-.fs-4 {
-  font-size: calc(1.275rem + 0.3vw) !important;
-}
-
-@media (min-width: 1200px) {
-  .fs-3 {
-    font-size: 1.75rem !important;
-  }
-  .fs-4 {
-    font-size: 1.5rem !important;
-  }
-}
 
 /* ----------------------------------------------------------- Transition fade */
 

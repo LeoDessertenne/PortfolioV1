@@ -17,28 +17,30 @@ export const metadata: Metadata = {
 export default function CreditsPage() {
   return (
     <>
-      <Link href="/" className="go-back">
-        Retour
-      </Link>
+      <div className="credits-page">
+        <Link href="/" className="go-back">
+          Retour
+        </Link>
 
-      <div className="credits-all">
-        <h1>Crédits</h1>
-        <div className="credits-corps">
-          {creditSections.map((section) => (
-            <Fragment key={section.heading}>
-              <h2>{section.heading}</h2>
-              <div className={section.blockClassName}>
-                {section.links.map((link) => (
-                  <Fragment key={link.href}>
-                    {link.label ? <p>{link.label}</p> : null}
-                    <a href={link.href} title={link.title}>
-                      {link.text}
-                    </a>
-                  </Fragment>
-                ))}
-              </div>
-            </Fragment>
-          ))}
+        <div className="credits-all">
+          <h1>Crédits</h1>
+          <div className="credits-corps">
+            {creditSections.map((section) => (
+              <Fragment key={section.heading}>
+                <h2>{section.heading}</h2>
+                <div className="credits-group">
+                  {section.links.map((link) => (
+                    <Fragment key={link.href}>
+                      {link.label ? <p>{link.label}</p> : null}
+                      <a href={link.href} title={link.title}>
+                        {link.text}
+                      </a>
+                    </Fragment>
+                  ))}
+                </div>
+              </Fragment>
+            ))}
+          </div>
         </div>
       </div>
 

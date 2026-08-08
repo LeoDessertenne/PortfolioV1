@@ -158,7 +158,17 @@ export function Modal({ id, title, open, onClose, children }: ModalProps) {
     return () => document.removeEventListener("keydown", onKeyDown);
   }, [open, onClose]);
 
-  return (
+  // La modale est rendue directement sous <body>, jamais dans la section qui
+  // l'ouvre : les panneaux `.glass--dark` portent un backdrop-filter, et un
+  // ancetre filtre devient le bloc conteneur de ses descendants en
+  // position: fixed. La modale se retrouverait alors positionnee et rognee
+  // dans la section au lieu de couvrir la fenetre.
+  //
+  // Avant l'hydratation il n'y a pas de portail possible : ce n'est pas un
+  // probleme, une modale fermee ne rend rien de visible (display: none).
+  if (!portalReady) return null;
+
+  return createPortal(
     <>
       <div
         ref={dialogRef}
@@ -194,14 +204,12 @@ export function Modal({ id, title, open, onClose, children }: ModalProps) {
         </div>
       </div>
 
-      {portalReady && displayed
-        ? createPortal(
-            <div
-              className={shown ? "modal-backdrop fade show" : "modal-backdrop fade"}
-            />,
-            document.body,
-          )
-        : null}
-    </>
+      {displayed ? (
+        <div
+          className={shown ? "modal-backdrop fade show" : "modal-backdrop fade"}
+        />
+      ) : null}
+    </>,
+    document.body,
   );
 }

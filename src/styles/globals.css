@@ -1,21 +1,22 @@
 /**
  * Styles de la page d'accueil, importes par src/app/(accueil)/layout.tsx.
  *
- * L'ORDRE DES IMPORTS EST SIGNIFIANT. Il reproduit exactement l'ordre des
- * balises <link> de l'ancienne page : plusieurs regles se recouvrent d'un
- * fichier a l'autre et le dernier declare l'emporte. En particulier
- * objectives.css doit rester apres les fichiers responsive-*.
+ * L'ordre reproduit celui des <link> de la branche feature/ui-glass :
+ *   1. socle    -> tokens, reset, typographie
+ *   2. verre    -> primitives (panneaux, boutons, pastilles)
+ *   3. layout   -> coquille, sections et composants
+ *   4. responsive
  *
  * Ce bundle ne s'applique volontairement pas a la page de credits, qui ne
- * chargeait pas Bootstrap dans l'ancien site : voir credits-page.css.
+ * charge pas Bootstrap : voir credits-page.css.
  *
  * Architecture des couches :
  *   theme      -> tokens Tailwind
  *   base       -> reboot Bootstrap + charte graphique (elements nus)
- *   components -> extraits Bootstrap (modale, utilitaires typographiques)
+ *   components -> extraits Bootstrap (systeme de modale)
  *   utilities  -> utilitaires Tailwind (prioritaires sur tout ce qui precede)
  * Les feuilles applicatives restent hors couche : elles priment donc sur les
- * utilitaires Tailwind, ce qui garantit que le rendu historique ne bouge pas.
+ * utilitaires Tailwind.
  */
 
 @layer theme, base, components, utilities;
@@ -28,15 +29,14 @@
 
 @import "./theme.css";
 @import "./tokens.css" layer(base);
+@import "./glass.css";
 @import "./layout.css";
 @import "./navbar.css";
 @import "./timeline.css";
-@import "./footer.css";
+@import "./projects.css";
+@import "./skills.css";
+@import "./objectives.css";
 @import "./modal.css";
 @import "./scroll-top.css";
-@import "./skills.css";
-@import "./projects.css";
-@import "./responsive-300.css";
-@import "./responsive-500.css";
-@import "./responsive-1000.css";
-@import "./objectives.css";
+@import "./footer.css";
+@import "./responsive.css";
