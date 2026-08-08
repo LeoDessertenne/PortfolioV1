@@ -139,6 +139,17 @@ const websiteJsonLd = {
  * styles injectes ; l'interet principal ici est de n'autoriser aucun script,
  * style, police ou media d'une autre origine.
  */
+/**
+ * La politique n'est appliquee qu'aux builds de production.
+ *
+ * En developpement, Next compile les modules avec eval() et recharge le code
+ * via un WebSocket. `script-src` sans 'unsafe-eval' et `connect-src 'self'`
+ * bloquent les deux : le bundle ne s'execute pas du tout, la page s'affiche
+ * correctement mais plus rien n'est interactif. Plutot que d'assouplir la
+ * politique livree en production, on ne la pose pas en developpement.
+ */
+const isProduction = process.env.NODE_ENV === "production";
+
 const contentSecurityPolicy = [
   "default-src 'self'",
   "base-uri 'self'",
@@ -159,7 +170,12 @@ export default function RootLayout({
   return (
     <html lang="fr" className={manrope.variable}>
       <head>
-        <meta httpEquiv="Content-Security-Policy" content={contentSecurityPolicy} />
+        {isProduction ? (
+          <meta
+            httpEquiv="Content-Security-Policy"
+            content={contentSecurityPolicy}
+          />
+        ) : null}
         <meta name="referrer" content="strict-origin-when-cross-origin" />
         <script
           type="application/ld+json"
