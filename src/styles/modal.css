@@ -1,211 +1,218 @@
-/**
- * Habillage des modales de projet, par-dessus les regles de base extraites de
- * Bootstrap (vendor/bootstrap-parts.css).
- * Portage de l'ancien css/style_modal.css.
- */
+/* Portage de css/style_modal.css de la branche feature/ui-glass. */
+/* ==========================================================================
+   MODALES PROJET — panneau en verre dépoli
+   ========================================================================== */
+
+/* Arrière-plan flouté : c'est lui qui vend l'effet « frosted ».
+   La couleur et le flou sont portés par .modal-backdrop, jamais par
+   .show : sinon, à la fermeture, le retrait de .show fait sauter d'un
+   coup le rgba vers le noir opaque de Bootstrap et le flou disparaît
+   sèchement — c'est le flash sombre. Seule l'opacité doit varier. */
+.modal-backdrop {
+    background-color: rgba(4, 2, 28, 0.5);
+    -webkit-backdrop-filter: blur(var(--blur-md)) saturate(120%);
+    backdrop-filter: blur(var(--blur-md)) saturate(120%);
+    transition: opacity var(--dur-mid) var(--ease-out);
+}
+
+.modal-backdrop.show {
+    opacity: 1;
+}
+
+/* Le panneau accompagne le fondu du fond au lieu de disparaître avant lui */
+.modal.fade .modal-dialog {
+    transition:
+        transform var(--dur-mid) var(--ease-out),
+        opacity var(--dur-mid) var(--ease-out);
+    transform: translateY(1rem) scale(0.98);
+    opacity: 0;
+}
+
+.modal.show .modal-dialog {
+    transform: none;
+    opacity: 1;
+}
 
 .modal-dialog {
-  max-width: min(90vw, 850px);
-  display: flex;
-  align-items: center;
-  min-height: calc(100% - 3.5rem);
+    max-width: min(92vw, 880px);
+    display: flex;
+    align-items: center;
+    min-height: calc(100% - 3.5rem);
 }
 
 .modal-content {
-  color: black;
-  background-color: var(--lightbeige);
-  border: none;
-  border-radius: 16px;
-  overflow: hidden;
-  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.35);
-  width: 100%;
+    width: 100%;
+    overflow: hidden;
+    border: 1px solid var(--glass-light-border);
+    border-radius: var(--radius-xl);
+    background: linear-gradient(
+        160deg,
+        rgba(255, 253, 246, 0.96),
+        rgba(255, 250, 234, 0.92)
+    );
+    box-shadow: var(--shadow-xl), var(--sheen-light);
+    color: var(--text-body);
 }
 
+@supports ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+    .modal-content {
+        -webkit-backdrop-filter: blur(var(--blur-lg)) saturate(var(--saturate));
+        backdrop-filter: blur(var(--blur-lg)) saturate(var(--saturate));
+        /* Reste franchement clair : la modale peut s'ouvrir au-dessus d'une
+           section navy, où un verre trop léger virerait au gris. */
+        background: linear-gradient(
+            160deg,
+            rgba(255, 253, 246, 0.94),
+            rgba(255, 250, 234, 0.9)
+        );
+    }
+}
+
+/* --- En-tête --- */
+
 .modal-header {
-  background: var(--darkblue);
-  background: linear-gradient(
-    90deg,
-    rgba(2, 0, 36, 1) 0%,
-    rgba(0, 0, 0, 1) 100%
-  );
-  border-bottom: none;
-  padding: 1.75rem 2rem;
+    align-items: center;
+    padding: clamp(1.25rem, 3vw, 1.75rem) clamp(1.25rem, 3vw, 2rem);
+    border-bottom: 1px solid var(--glass-dark-hairline);
+    background: linear-gradient(
+        135deg,
+        rgba(13, 11, 77, 0.92),
+        rgba(5, 4, 31, 0.94)
+    );
 }
 
 .modal-title {
-  font-family: var(--font-display);
-  font-weight: 100;
-  font-size: 2.2rem;
-  color: var(--lightbeige);
+    font-family: var(--font-display);
+    font-weight: 100;
+    font-size: clamp(1.6rem, 3vw, 2.2rem);
+    line-height: 1.1;
+    color: var(--cream-100);
 }
 
 .btn-close {
-  filter: invert(1) grayscale(100%) brightness(200%);
-  opacity: 0.75;
-  transition: opacity 0.2s;
+    filter: invert(1) grayscale(100%) brightness(200%);
+    opacity: 0.7;
+    transition: opacity var(--dur-fast) var(--ease-out);
 }
 
 .btn-close:hover {
-  opacity: 1;
+    opacity: 1;
 }
+
+/* --- Corps --- */
 
 .modal-body {
-  padding: 2rem;
-  max-height: calc(100vh - 12rem);
-  overflow-y: auto;
-  overscroll-behavior: contain;
-  scrollbar-width: thin;
-  scrollbar-color: var(--midbeige) transparent;
-}
-
-.modal-body::-webkit-scrollbar {
-  width: 10px;
-}
-
-.modal-body::-webkit-scrollbar-track {
-  background: transparent;
-}
-
-.modal-body::-webkit-scrollbar-thumb {
-  background-color: var(--midbeige);
-  border-radius: 999px;
-  border: 3px solid var(--lightbeige);
+    padding: clamp(1.25rem, 3vw, 2rem);
 }
 
 .modal-body h3 {
-  font-family: var(--font-sans);
-  font-size: 0.85rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  color: var(--darkblue);
-  margin-top: 2.25rem;
-  margin-bottom: 0.75rem;
-  padding-bottom: 0.5rem;
-  border-bottom: 2px solid var(--midbeige);
+    margin: var(--space-md) 0 0.75rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid rgba(10, 9, 48, 0.12);
+    font-family: var(--font-body);
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    color: var(--text-muted);
 }
 
 .modal-body > h3:first-child {
-  margin-top: 0;
-}
-
-.modal-body strong {
-  font-weight: 700;
-  color: var(--darkblue);
+    margin-top: 0;
 }
 
 .modal-body p {
-  font-size: 1.15rem;
-  text-align: left;
-  hyphens: auto;
-  line-height: 1.7;
+    font-size: 1.02rem;
+    line-height: 1.75;
+    text-align: left;
+    hyphens: auto;
+    text-wrap: pretty;
+    color: var(--text-body);
 }
 
 .modal-body ul {
-  font-size: 1rem;
-  padding-left: 1.2rem;
+    font-size: 0.98rem;
+    padding-left: 1.15rem;
+    color: var(--text-body);
 }
 
 .modal-body ul li {
-  margin-bottom: 0.4rem;
+    margin-bottom: 0.4rem;
 }
 
-.modal-body a {
-  font-size: 1rem;
-  color: var(--darkblue);
-  font-weight: 600;
+.modal-body a:not(.btn-glass) {
+    color: var(--ink-800);
+    font-weight: 600;
+    text-underline-offset: 3px;
 }
+
+/* --- Deux colonnes : compétences / technologies --- */
 
 .modal-content-container {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 1.5rem;
-  margin: 1.5rem 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(260px, 100%), 1fr));
+    gap: var(--space-md);
+    margin: var(--space-md) 0;
+    align-items: start;
 }
 
-.modal-content-container .skills,
-.modal-content-container .languages {
-  flex: 1 1 260px;
-  box-sizing: border-box;
+/* Simples colonnes : pas de tuile claire imbriquée dans la modale */
+.modal-content-container .skills h3,
+.modal-content-container .languages h3 {
+    margin-top: 0;
 }
 
-.modal-content-container h3 {
-  margin-top: 0;
+/* Le séparateur vertical est remplacé par la grille */
+.modal-content-container .vertical-line {
+    display: none;
 }
 
 .languages ul {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-  list-style: none;
-  padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    list-style: none;
+    padding: 0;
 }
 
 .languages ul li {
-  margin: 0;
-  border: 1px solid var(--darkblue);
-  border-radius: 999px;
-  padding: 4px 14px;
-  font-size: 0.85rem;
+    margin: 0;
+    padding: 0.15rem 0.7rem;
+    border: 1px solid rgba(2, 0, 58, 0.18);
+    border-radius: var(--radius-pill);
+    background: rgba(255, 255, 255, 0.5);
+    font-size: 0.78rem;
+    color: var(--text-body);
+}
+
+/* --- Média --- */
+
+.video {
+    display: flex;
+    justify-content: center;
 }
 
 .modal-video {
-  max-width: 100%;
-  max-height: calc(100vh - 200px);
-  width: auto;
-  height: auto;
-  border-radius: 10px;
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.2);
+    max-width: 100%;
+    max-height: calc(100vh - 220px);
+    width: auto;
+    height: auto;
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-md);
 }
+
+/* --- Lien de sortie --- */
 
 .project-btn-link-container {
-  display: flex;
-  justify-content: flex-start;
-  flex-wrap: wrap;
-  gap: 1rem;
-  margin-top: 1.5rem;
-}
-
-.project-btn-link {
-  display: inline-block;
-  padding: 0.6rem 1.4rem;
-  margin: 0;
-  background-color: transparent;
-  border: 2px solid var(--darkblue);
-  color: var(--darkblue);
-  font-weight: 600;
-  text-decoration: none;
-  border-radius: 999px;
-  transition:
-    background-color 0.25s,
-    color 0.25s;
-}
-
-.project-btn-link:hover {
-  background-color: var(--darkblue);
-  color: var(--lightbeige);
+    display: flex;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    gap: var(--space-xs);
+    margin-top: var(--space-md);
 }
 
 @media (max-width: 768px) {
-  .modal-dialog {
-    max-width: 100%;
-  }
-
-  .modal-header {
-    padding: 1.25rem 1.5rem;
-  }
-
-  .modal-title {
-    font-size: 1.6rem;
-  }
-
-  .modal-body {
-    padding: 1.5rem;
-    max-height: calc(100vh - 8rem);
-  }
-
-  .modal-content-container .skills,
-  .modal-content-container .languages {
-    flex: 1 1 100%;
-  }
+    .modal-dialog {
+        max-width: calc(100% - 1rem);
+    }
 }

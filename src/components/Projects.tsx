@@ -8,34 +8,32 @@ import { SectionHeading } from "@/components/SectionHeading";
 import { projectGroups } from "@/data/projects";
 
 /**
- * Section « Projets ».
+ * Section « Projets » : panneau navy en verre depoli.
  *
  * Une seule modale est ouverte a la fois : l'etat est donc porte ici plutot que
- * dans chaque carte. Toutes les modales restent montees, comme dans l'ancienne
- * page ; les videos ne sont pas chargees pour autant (preload="none").
- *
- * Les regroupements utilisent des Fragment et non des <div> : la grille
- * `.projets-container` doit avoir les cartes pour enfants directs, et les marges
- * des titres d'annee ne doivent pas changer de contexte de fusion.
+ * dans chaque carte. Les modales sont montees en permanence mais rendues via un
+ * portail vers <body> (voir Modal.tsx), car le backdrop-filter du panneau
+ * casserait leur positionnement fixed.
  */
 export function Projects() {
   const [openId, setOpenId] = useState<string | null>(null);
   const close = useCallback(() => setOpenId(null), []);
 
   return (
-    <div className="mes-projets gauche" id="h-projets">
+    <div className="mes-projets gauche glass--dark on-dark" id="h-projets">
       <SectionHeading variant="gauche">Projets</SectionHeading>
 
-      <p className="fs-3 text-justify">
-        Voici les principaux projets et TP/TD de programmation que j&apos;ai
-        réalisés au cours de mes études.
+      <p className="section-lead reveal-apparition">
+        Une sélection de projets menés en entreprise et au cours de mes études :
+        jeu en ligne, site multilingue, applications web et travaux
+        d&rsquo;algorithmique.
         <br />
-        Cliquez sur un projet pour obtenir plus d&apos;informations
+        Chaque carte ouvre le détail du projet
       </p>
 
       {projectGroups.map((group) => (
         <Fragment key={group.heading}>
-          <h3 className="reveal-apparition BUT-year fs-4">{group.heading}</h3>
+          <h3 className="reveal-apparition BUT-year">{group.heading}</h3>
           <div className="projets-container">
             {group.projects.map((project) => (
               <Fragment key={project.id}>

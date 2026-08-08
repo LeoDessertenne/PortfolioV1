@@ -13,7 +13,7 @@ export function Timeline() {
     <div id="idtimeline" className="droite ma-timeline">
       <SectionHeading variant="droite">Mon Parcours</SectionHeading>
 
-      <div className="timeline-viewport">
+      <div className="timeline-shell">
         <div className="timeline">
           <ul>
             {timeline.map((entry) => (

@@ -26,14 +26,18 @@ export function Skills() {
     <div id="competences" className="droite">
       <SectionHeading variant="droite">Compétences</SectionHeading>
 
-      <h3 className="reveal-apparition">Qualités Professionnelles</h3>
+      <h3 className="reveal-apparition competences-group-title">
+        Qualités Professionnelles
+      </h3>
       <div className="container-competences">
         {professionalQualities.map((group) => (
           <TagCard key={group.title} group={group} listClassName="tech-tags" />
         ))}
       </div>
 
-      <h3 className="reveal-apparition">Outils</h3>
+      <h3 className="reveal-apparition competences-group-title">
+        Outils
+      </h3>
       <div className="container-competences">
         {tools.map((group) => (
           <div
@@ -55,7 +59,9 @@ export function Skills() {
         ))}
       </div>
 
-      <h3 className="reveal-apparition">Langages de programmation</h3>
+      <h3 className="reveal-apparition competences-group-title">
+        Langages de programmation
+      </h3>
       <div className="container-competences skill-tiers">
         {programmingLanguages.map((group) => (
           <TagCard

@@ -7,6 +7,8 @@ type SocialLink = {
   href: string;
   src: string;
   alt: string;
+  /** Intitule accessible du lien : l'image seule ne decrit pas la destination. */
+  label: string;
 };
 
 function SocialLinks({ links }: { links: SocialLink[] }) {
@@ -16,6 +18,7 @@ function SocialLinks({ links }: { links: SocialLink[] }) {
         <a
           key={link.href}
           href={link.href}
+          aria-label={link.label}
           target={link.href.startsWith("mailto:") ? undefined : "_blank"}
           rel={link.href.startsWith("mailto:") ? undefined : "noopener noreferrer"}
         >
@@ -41,11 +44,13 @@ export function SiteFooter() {
             href: site.github,
             src: "/Image/Accueil/github.png",
             alt: `Profil GitHub de ${site.name}`,
+            label: "Profil GitHub",
           },
           {
             href: site.linkedin,
             src: "/Image/Accueil/linkedin.png",
             alt: `Profil LinkedIn de ${site.name}`,
+            label: "Profil LinkedIn",
           },
         ]}
       />
@@ -65,21 +70,29 @@ export function CreditsFooter() {
     <footer>
       <SocialLinks
         links={[
-          { href: site.github, src: "/Image/Accueil/github.png", alt: "github" },
+          {
+            href: site.github,
+            src: "/Image/Accueil/github.png",
+            alt: "github",
+            label: "Profil GitHub",
+          },
           {
             href: site.leetcode,
             src: "/Image/Accueil/leetcode.png",
             alt: "leetcode",
+            label: "Profil LeetCode",
           },
           {
             href: site.linkedin,
             src: "/Image/Accueil/linkedin.png",
             alt: "linkedin",
+            label: "Profil LinkedIn",
           },
           {
             href: `mailto:${site.email}`,
             src: "/Image/Accueil/mail.png",
             alt: "mail",
+            label: "M'envoyer un email",
           },
         ]}
       />

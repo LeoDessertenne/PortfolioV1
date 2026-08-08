@@ -6,7 +6,7 @@ export function Presentation() {
     <div className="mon-portfolio droite" id="presentation">
       <SectionHeading variant="droite">Présentation</SectionHeading>
 
-      <p className="p-droite p-balanced reveal-apparition">
+      <p className="p-droite reveal-apparition">
         Je m&apos;appelle Léo Dessertenne. Passionné d&apos;informatique, j&apos;ai
         rejoint le BUT Informatique de l&apos;Université Gustave Eiffel en 2022,
         avant de poursuivre en codiplomation au sein du cycle ingénieur de

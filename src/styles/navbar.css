@@ -1,105 +1,261 @@
-/**
- * Navigation principale et menu hamburger (< 1200px).
- * Portage de l'ancien css/style_navbar.css.
- */
+/* Portage de css/style_navbar.css de la branche feature/ui-glass. */
+/* ==========================================================================
+   NAVIGATION — pilule flottante en verre dépoli
+   ========================================================================== */
+
+.custom-nav {
+    position: fixed;
+    top: var(--space-sm);
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 900;
+    display: flex;
+    justify-content: center;
+    width: max-content;
+    max-width: calc(100% - 2rem);
+    /* `backwards` et non `forwards` : une animation d'opacité qui persiste
+       après sa fin fait de .custom-nav un « backdrop root », et le
+       backdrop-filter de la pilule n'a alors plus rien à flouter. En
+       partant de l'état de repos, l'animation cesse d'agir une fois
+       terminée et le verre redevient fonctionnel. */
+    animation: nav-apparition 1s 0.9s var(--ease-out) backwards;
+}
+
+@keyframes nav-apparition {
+    from {
+        opacity: 0;
+        transform: translateX(-50%) translateY(-10px);
+    }
+}
+
+.custom-nav-links {
+    display: flex;
+    align-items: center;
+    flex-wrap: nowrap;
+    gap: 0.15rem;
+    height: var(--nav-height);
+    margin: 0;
+    padding: 0 0.4rem;
+    list-style: none;
+    border-radius: var(--radius-pill);
+    border: 1px solid rgba(255, 255, 255, 0.6);
+    background: linear-gradient(
+        145deg,
+        rgba(255, 253, 246, 0.72),
+        rgba(255, 250, 234, 0.5)
+    );
+    box-shadow: var(--shadow-md), var(--sheen-light);
+}
+
+@supports ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+    /* Rayon modéré + saturation forte + fond peu opaque : ce qui passe
+       derrière (titre du hero, panneaux navy) se réduit à une nappe de
+       couleur diffuse, visible sous la pilule sans jamais gêner la
+       lecture des libellés. */
+    .custom-nav-links {
+        -webkit-backdrop-filter: blur(var(--blur-nav)) saturate(180%);
+        backdrop-filter: blur(var(--blur-nav)) saturate(180%);
+        background: linear-gradient(
+            145deg,
+            rgba(255, 253, 246, 0.62),
+            rgba(255, 250, 234, 0.5)
+        );
+    }
+}
+
+.custom-nav-links li {
+    display: flex;
+    list-style: none;
+}
+
+.custom-nav-links a {
+    position: relative;
+    display: flex;
+    align-items: center;
+    padding: 0.5rem 1rem;
+    border-radius: var(--radius-pill);
+    color: var(--text-body);
+    font-family: var(--font-body);
+    font-size: 0.95rem;
+    font-weight: 600;
+    line-height: 1.2;
+    text-decoration: none;
+    white-space: nowrap;
+    transition:
+        color var(--dur-fast) var(--ease-out),
+        background-color var(--dur-fast) var(--ease-out);
+}
+
+.custom-nav-links a:hover {
+    color: var(--text-strong);
+    background: rgba(255, 255, 255, 0.6);
+}
+
+/* Section courante, posée par script_nav_active.js */
+.custom-nav-links a.is-active {
+    color: var(--cream-100);
+    background: linear-gradient(145deg, var(--ink-800), var(--ink-950));
+    box-shadow: var(--shadow-xs), var(--sheen-dark);
+}
+
+/* ==========================================================================
+   BOUTON HAMBURGER
+   ========================================================================== */
 
 .hamburger {
-  display: none;
-  position: fixed;
-  background-color: var(--darkblue);
-}
-
-nav {
-  top: 0;
-  position: fixed;
-  width: 100%;
-  height: 70px;
-  display: flex;
-  justify-content: center;
-  backdrop-filter: blur(15px);
-  opacity: 0;
-  transform: translateY(-10px);
-  animation: apparition 1.5s 1s ease-out forwards;
-  line-height: 70px;
-  z-index: 50;
-}
-
-nav ul {
-  padding: 2px 0;
-  background-color: #fff7ea80;
-  width: 100%;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-around;
-  border-bottom: 1px black solid;
-  margin-bottom: 0;
-}
-
-nav ul li {
-  display: flex;
-  list-style: none;
-  text-align: center;
-}
-
-nav ul li a {
-  color: black;
-  text-decoration: none;
-  font-family: var(--font-sans);
-  font-weight: 600;
-  font-size: 1.1em;
-  transition: 0.1s ease-out;
-}
-
-nav ul li a:hover {
-  text-decoration: underline;
-  text-decoration-thickness: 1px;
-}
-
-@media screen and (max-width: 1200px) {
-  .hamburger {
-    display: block;
-    top: 30px;
-    right: 30px;
-    background-color: black;
-    padding: 5px;
-    z-index: 998;
-    border-radius: 5px;
-    width: 35px;
-  }
-
-  nav {
     display: none;
-    width: 100%;
-    height: 100vh;
-    backdrop-filter: blur(0px);
-    transform: translateY(-10px);
-    animation: all 0.5s;
-  }
+    position: fixed;
+    top: var(--space-sm);
+    right: var(--space-sm);
+    z-index: 950;
+    width: 48px;
+    height: 48px;
+    padding: 13px;
+    border-radius: var(--radius-pill);
+    /* Pastille navy à icône claire, comme l'onglet actif de la nav et le
+       bouton « retour en haut » : le PNG source est blanc, il lui faut un
+       fond sombre pour rester lisible. */
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    background: linear-gradient(145deg, var(--ink-800), var(--ink-950));
+    -webkit-backdrop-filter: blur(var(--blur-md)) saturate(var(--saturate));
+    backdrop-filter: blur(var(--blur-md)) saturate(var(--saturate));
+    box-shadow: var(--shadow-md), var(--sheen-dark);
+    cursor: pointer;
+    transition: transform var(--dur-fast) var(--ease-out);
+}
 
-  nav ul {
-    position: absolute;
-    display: flex;
-    flex-direction: column;
-    background-color: rgba(0, 0, 0, 0.9);
-    justify-content: space-around;
-    align-items: center;
-    width: 100%;
-    height: 100vh;
-    margin-left: -200%;
-    transition: 0.5s ease-out;
-  }
+.hamburger:hover {
+    transform: scale(1.05);
+}
 
-  nav ul li a {
-    color: var(--lightbeige);
-  }
+/* ==========================================================================
+   MENU MOBILE — panneau plein écran en verre
+   ========================================================================== */
 
-  .mobile-menu {
-    margin-left: 0;
-  }
+@media screen and (max-width: 1100px) {
+    .hamburger {
+        display: block;
+    }
 
-  .nav-menu {
-    display: block;
-    transform: translateY(-10px);
-    animation: apparition 0.2s 0s ease-out forwards;
-  }
+    .custom-nav {
+        top: 0;
+        left: 0;
+        transform: none;
+        width: 100%;
+        max-width: none;
+        height: 100svh;
+        opacity: 1;
+        animation: none;
+        pointer-events: none;
+    }
+
+    .custom-nav-links {
+        position: absolute;
+        inset: 0;
+        height: 100svh;
+        width: 100%;
+        flex-direction: column;
+        justify-content: center;
+        gap: var(--space-sm);
+        padding: var(--space-2xl) var(--space-md);
+        border: none;
+        border-radius: 0;
+        /* Voile plutôt qu'aplat : le fond reste devinable derrière le
+           panneau, le flou seul assure la lisibilité des libellés.
+           Navy franc (ink-900/950) et non ink-800, qui virait au parme
+           une fois délavé par la transparence. */
+        background: linear-gradient(
+            160deg,
+            rgba(2, 0, 58, 0.78),
+            rgba(5, 4, 31, 0.88)
+        );
+        -webkit-backdrop-filter: blur(var(--blur-lg)) saturate(var(--saturate));
+        backdrop-filter: blur(var(--blur-lg)) saturate(var(--saturate));
+        box-shadow: none;
+        opacity: 0;
+        visibility: hidden;
+        transform: translateY(-1.5rem);
+        transition:
+            opacity var(--dur-mid) var(--ease-out),
+            transform var(--dur-mid) var(--ease-out),
+            visibility var(--dur-mid);
+    }
+
+    .custom-nav-links.mobile-menu {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0);
+        pointer-events: auto;
+    }
+
+    .custom-nav.nav-menu {
+        pointer-events: auto;
+    }
+
+    .custom-nav-links li {
+        width: min(100%, 460px);
+        margin: 0 auto;
+    }
+
+    /* Ni pastille ni cadre : le menu n'est plus qu'une liste de mots,
+       posée dans la police de titrage du site. */
+    .custom-nav-links a {
+        justify-content: center;
+        width: 100%;
+        padding: 0.9rem 1.25rem;
+        border: none;
+        border-radius: 0;
+        background: none;
+        box-shadow: none;
+        font-family: var(--font-display);
+        font-weight: 100;
+        font-size: clamp(2rem, 8.5vw, 2.6rem);
+        letter-spacing: 0.03em;
+        /* Gallery Modern n'existe qu'en graisse 100 : demander un
+           font-weight plus lourd ne ferait que déclencher un faux gras
+           baveux. Un filet de contour épaissit le trait proprement. */
+        -webkit-text-stroke: 0.6px currentColor;
+        color: var(--text-on-dark-muted);
+    }
+
+    .custom-nav-links a:hover,
+    .custom-nav-links a.is-active {
+        color: var(--cream-100);
+        background: none;
+    }
+
+    /* Section courante encadrée de deux filets dégradés, comme les titres
+       de groupe : celui du haut s'éteint à gauche, celui du bas à droite. */
+    .custom-nav-links a.is-active::before,
+    .custom-nav-links a.is-active::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        right: 0;
+        height: 1px;
+    }
+
+    /* Trait plein sur le premier tiers, puis longue extinction jusqu'au
+       zéro absolu en bout de course : c'est la queue du dégradé qui doit
+       disparaître, pas seulement s'atténuer. Les deux filets sont
+       symétriques, chacun s'éteignant du côté opposé. */
+    .custom-nav-links a.is-active::before {
+        top: 0;
+        background: linear-gradient(
+            to right,
+            rgba(255, 250, 234, 0.4),
+            rgba(255, 250, 234, 0.4) 12%,
+            rgba(255, 250, 234, 0) 100%
+        );
+    }
+
+    .custom-nav-links a.is-active::after {
+        bottom: 0;
+        background: linear-gradient(
+            to left,
+            rgba(255, 250, 234, 0.4),
+            rgba(255, 250, 234, 0.4) 12%,
+            rgba(255, 250, 234, 0) 100%
+        );
+    }
 }
