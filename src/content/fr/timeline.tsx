@@ -1,13 +1,5 @@
-import type { ReactNode } from "react";
-
 import { site } from "@/lib/site";
-
-export type TimelineEntry = {
-  /** Periode affichee au-dessus du titre. */
-  period: string;
-  title: string;
-  body: ReactNode;
-};
+import type { TimelineEntry } from "@/content/types";
 
 export const timeline: TimelineEntry[] = [
   {

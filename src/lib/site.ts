@@ -1,19 +1,12 @@
 /**
- * Constantes du site, referencees par les metadonnees, le JSON-LD et les
- * composants. Un seul endroit a modifier en cas de changement de domaine,
- * d'adresse mail ou de reseau social.
+ * Faits invariants du site : identite, URLs, contacts.
+ *
+ * Tout ce qui se traduit vit ailleurs : les chaines d'interface dans
+ * src/i18n/ui.ts, le contenu redactionnel dans src/content.
  */
-
 export const site = {
   name: "Léo Dessertenne",
-  role: "Développeur fullstack",
   url: "https://leodessertenne.com",
-  locale: "fr_FR",
-  title: "Léo Dessertenne — Développeur Fullstack",
-  description:
-    "Léo Dessertenne, développeur fullstack en alternance chez IDM Group et " +
-    "élève ingénieur à l'ESIEE Paris. Découvrez mes projets et contactez-moi " +
-    "par email pour toute opportunité de collaboration.",
   email: "pro.leo.dessertenne@gmail.com",
   cv: "/Image/Leo_DESSERTENNE_CV.pdf",
   github: "https://github.com/LeoDessertenne",
@@ -29,12 +22,16 @@ export const site = {
   },
 } as const;
 
-/** Sections de la navigation principale, dans l'ordre d'affichage. */
+/**
+ * Sections de la navigation, dans l'ordre d'affichage.
+ * Les ancres sont communes aux deux langues ; seuls les libelles changent,
+ * via la cle correspondante dans src/i18n/ui.ts.
+ */
 export const navigation = [
-  { href: "#presentation", label: "Présentation" },
-  { href: "#idtimeline", label: "Mon parcours" },
-  { href: "#h-projets", label: "Projets" },
-  { href: "#competences", label: "Compétences" },
-  { href: "#h-objectifs", label: "Objectifs" },
-  { href: "#contact", label: "Me contacter" },
+  { href: "#presentation", key: "presentation" },
+  { href: "#idtimeline", key: "timeline" },
+  { href: "#h-projets", key: "projects" },
+  { href: "#competences", key: "skills" },
+  { href: "#h-objectifs", key: "objectives" },
+  { href: "#contact", key: "contact" },
 ] as const;

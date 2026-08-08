@@ -1,10 +1,13 @@
+import type { ReactNode } from "react";
+
 import { site } from "@/lib/site";
+import type { UiStrings } from "@/i18n/ui";
 
 /**
  * En-tete plein ecran : nom en degrade, role, accroche, actions et liens
  * sociaux, puis l'indicateur de defilement.
  */
-export function Hero() {
+export function Hero({ ui, intro }: { ui: UiStrings; intro: ReactNode }) {
   return (
     <header className="hero">
       <h1 id="h1-moi" className="hero-title">
@@ -12,26 +15,18 @@ export function Hero() {
       </h1>
 
       <div className="hero-card">
-        <p id="moi-role">{site.role}</p>
-        <p id="moi">
-          Actuellement en dernière année (E5) à l&apos;ESIEE Paris filière
-          informatique, et en alternance chez{" "}
-          <a href={site.employer.url} target="_blank" rel="noopener noreferrer">
-            {site.employer.name}
-          </a>
-          , où je développe en Java, Spring Boot et React les plateformes des
-          dictionnaires en ligne d&apos;Oxford, Cambridge et autres.
-        </p>
+        <p id="moi-role">{ui.hero.role}</p>
+        <p id="moi">{intro}</p>
 
         <div className="hero-cta">
           <a
             href={`mailto:${site.email}`}
             className="btn-glass btn-glass--primary"
           >
-            Me contacter
+            {ui.hero.contact}
           </a>
           <a href="#h-projets" className="btn-glass">
-            Voir mes projets
+            {ui.hero.seeProjects}
           </a>
           <a
             href={site.cv}
@@ -39,7 +34,7 @@ export function Hero() {
             rel="noopener noreferrer"
             className="btn-glass"
           >
-            CV PDF
+            {ui.hero.cv}
           </a>
         </div>
 
@@ -48,32 +43,26 @@ export function Hero() {
             href={site.github}
             target="_blank"
             rel="noopener noreferrer"
-            aria-label="Profil GitHub"
+            aria-label={ui.hero.github}
           >
             {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
-              src="/Image/Accueil/github.png"
-              alt={`Profil GitHub de ${site.name}`}
-            />
+            <img src="/Image/Accueil/github.png" alt={ui.hero.github} />
           </a>
           <a
             href={site.linkedin}
             target="_blank"
             rel="noopener noreferrer"
-            aria-label="Profil LinkedIn"
+            aria-label={ui.hero.linkedin}
           >
             {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
-              src="/Image/Accueil/linkedin.png"
-              alt={`Profil LinkedIn de ${site.name}`}
-            />
+            <img src="/Image/Accueil/linkedin.png" alt={ui.hero.linkedin} />
           </a>
         </div>
       </div>
 
       {/* Le <span> vide porte le trait anime de l'indicateur de defilement. */}
       <a href="#presentation" className="hero-scroll">
-        Découvrir
+        {ui.hero.scroll}
         <span />
       </a>
     </header>

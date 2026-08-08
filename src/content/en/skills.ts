@@ -1,43 +1,33 @@
-/** Groupe de competences rendu sous forme d'etiquettes. */
-export type TagGroup = {
-  title: string;
-  items: string[];
-};
-
-/** Groupe d'outils rendu sous forme de logos legendes. */
-export type ToolGroup = {
-  title: string;
-  tools: { name: string; icon: string }[];
-};
+import type { TagGroup, ToolGroup } from "@/content/types";
 
 export const professionalQualities: TagGroup[] = [
   {
-    title: "Savoir-être",
+    title: "Ways of working",
     items: [
-      "Collaboratif",
-      "Méthodique",
-      "Adaptabilité",
-      "Autonomie",
-      "Pensée critique",
-      "Empathie",
-      "Gestion du stress",
+      "Collaborative",
+      "Methodical",
+      "Adaptable",
+      "Autonomous",
+      "Critical thinking",
+      "Empathy",
+      "Composure under pressure",
     ],
   },
   {
-    title: "Savoir-faire",
+    title: "Capabilities",
     items: [
-      "Développement logiciel, Web et Mobile",
-      "Programmation orientée objet",
-      "Conception et gestion de bases de données",
-      "Déploiement et gestion de code",
-      "Algorithmie",
+      "Software, web and mobile development",
+      "Object-oriented programming",
+      "Database design and management",
+      "Deployment and version control",
+      "Algorithms",
     ],
   },
 ];
 
 export const tools: ToolGroup[] = [
   {
-    title: "Editeur de code",
+    title: "Code editor",
     tools: [{ name: "Visual Studio Code", icon: "/Image/outils/vscode.png" }],
   },
   {
@@ -49,36 +39,36 @@ export const tools: ToolGroup[] = [
     ],
   },
   {
-    title: "Système de gestion de base de données",
+    title: "Database management systems",
     tools: [
       { name: "PostgreSQL", icon: "/Image/outils/postgresql.png" },
       { name: "Solr", icon: "/Image/outils/solr.png" },
     ],
   },
   {
-    title: "Outil de gestion de base de données",
+    title: "Database tools",
     tools: [
       { name: "PHPMyAdmin", icon: "/Image/outils/phpmyadmin.png" },
       { name: "MongoDB", icon: "/Image/outils/MongoDB.png" },
     ],
   },
   {
-    title: "Système de contrôle de version",
+    title: "Version control",
     tools: [{ name: "Git", icon: "/Image/outils/git.png" }],
   },
   {
-    title: "Outil de suivi des problèmes et de gestion de projet",
+    title: "Issue tracking and project management",
     tools: [{ name: "Jira Software", icon: "/Image/outils/jira.png" }],
   },
   {
-    title: "Système d'exploitation",
+    title: "Operating systems",
     tools: [
       { name: "Linux", icon: "/Image/outils/linux.png" },
       { name: "Windows", icon: "/Image/outils/windows.png" },
     ],
   },
   {
-    title: "Frameworks et Technologies Web",
+    title: "Web frameworks and technologies",
     tools: [
       { name: "Thymeleaf", icon: "/Image/outils/thymeleaf.png" },
       { name: "SpringBoot", icon: "/Image/outils/spring.png" },
@@ -88,15 +78,15 @@ export const tools: ToolGroup[] = [
 
 export const programmingLanguages: TagGroup[] = [
   {
-    title: "Quotidien",
+    title: "Daily",
     items: ["Java", "Spring Boot", "SQL", "HTML & CSS", "JavaScript", "Git"],
   },
   {
-    title: "Utilisé en projet",
+    title: "Used on projects",
     items: ["Python", "PHP", "PostgreSQL", "React", "TypeScript"],
   },
   {
-    title: "Notions",
+    title: "Familiar with",
     items: ["C", "Bash", "Godot"],
   },
 ];

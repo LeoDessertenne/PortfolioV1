@@ -1,12 +1,13 @@
 import Link from "next/link";
 
 import { CurrentYear } from "@/components/CurrentYear";
+import { localePath, type Locale } from "@/i18n/config";
+import type { UiStrings } from "@/i18n/ui";
 import { site } from "@/lib/site";
 
 type SocialLink = {
   href: string;
   src: string;
-  alt: string;
   /** Intitule accessible du lien : l'image seule ne decrit pas la destination. */
   label: string;
 };
@@ -23,7 +24,7 @@ function SocialLinks({ links }: { links: SocialLink[] }) {
           rel={link.href.startsWith("mailto:") ? undefined : "noopener noreferrer"}
         >
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src={link.src} alt={link.alt} />
+          <img src={link.src} alt={link.label} />
         </a>
       ))}
     </div>
@@ -31,11 +32,11 @@ function SocialLinks({ links }: { links: SocialLink[] }) {
 }
 
 /** Pied de page de la page d'accueil. */
-export function SiteFooter() {
+export function SiteFooter({ locale, ui }: { locale: Locale; ui: UiStrings }) {
   return (
     <footer>
-      <Link href="/credits" id="credits">
-        Crédits
+      <Link href={localePath(locale, "credits")} id="credits">
+        {ui.footer.credits}
       </Link>
 
       <SocialLinks
@@ -43,29 +44,27 @@ export function SiteFooter() {
           {
             href: site.github,
             src: "/Image/Accueil/github.png",
-            alt: `Profil GitHub de ${site.name}`,
-            label: "Profil GitHub",
+            label: ui.hero.github,
           },
           {
             href: site.linkedin,
             src: "/Image/Accueil/linkedin.png",
-            alt: `Profil LinkedIn de ${site.name}`,
-            label: "Profil LinkedIn",
+            label: ui.hero.linkedin,
           },
         ]}
       />
 
       <hr />
       <p>
-        {site.name} © <CurrentYear fallback={new Date().getFullYear()} /> Tous
-        droits réservés
+        {site.name} © <CurrentYear fallback={new Date().getFullYear()} />{" "}
+        {ui.footer.rights}
       </p>
     </footer>
   );
 }
 
 /** Pied de page de la page de credits, qui expose davantage de liens. */
-export function CreditsFooter() {
+export function CreditsFooter({ ui }: { ui: UiStrings }) {
   return (
     <footer>
       <SocialLinks
@@ -73,32 +72,31 @@ export function CreditsFooter() {
           {
             href: site.github,
             src: "/Image/Accueil/github.png",
-            alt: "github",
-            label: "Profil GitHub",
+            label: ui.hero.github,
           },
           {
             href: site.leetcode,
             src: "/Image/Accueil/leetcode.png",
-            alt: "leetcode",
-            label: "Profil LeetCode",
+            label: ui.hero.leetcode,
           },
           {
             href: site.linkedin,
             src: "/Image/Accueil/linkedin.png",
-            alt: "linkedin",
-            label: "Profil LinkedIn",
+            label: ui.hero.linkedin,
           },
           {
             href: `mailto:${site.email}`,
             src: "/Image/Accueil/mail.png",
-            alt: "mail",
-            label: "M'envoyer un email",
+            label: ui.hero.email,
           },
         ]}
       />
 
       <hr />
-      <p>{site.name} © 2024 All rights reserved.</p>
+      <p>
+        {site.name} © <CurrentYear fallback={new Date().getFullYear()} />{" "}
+        {ui.footer.rights}
+      </p>
     </footer>
   );
 }

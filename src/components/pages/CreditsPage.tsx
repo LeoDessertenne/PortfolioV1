@@ -1,29 +1,28 @@
-import type { Metadata } from "next";
 import Link from "next/link";
 import { Fragment } from "react";
 
 import { CreditsFooter } from "@/components/Footer";
-import { creditSections } from "@/data/credits";
+import { LanguageSwitcher } from "@/components/LanguageSwitcher";
+import { getContent } from "@/content";
+import { localePath, type Locale } from "@/i18n/config";
+import { getUi } from "@/i18n/ui";
 
-export const metadata: Metadata = {
-  title: "Crédits",
-  description:
-    "Crédits des icônes, polices et images utilisées sur le portfolio de Léo Dessertenne.",
-  alternates: { canonical: "/credits" },
-  // Page utilitaire : indexee mais volontairement laissee hors sitemap.
-  robots: { index: false, follow: true },
-};
+/** Page de credits, rendue dans la langue demandee. */
+export function CreditsPage({ locale }: { locale: Locale }) {
+  const ui = getUi(locale);
+  const { creditSections } = getContent(locale);
 
-export default function CreditsPage() {
   return (
     <>
+      <LanguageSwitcher locale={locale} page="credits" />
+
       <div className="credits-page">
-        <Link href="/" className="go-back">
-          Retour
+        <Link href={localePath(locale, "home")} className="go-back">
+          {ui.credits.back}
         </Link>
 
         <div className="credits-all">
-          <h1>Crédits</h1>
+          <h1>{ui.credits.title}</h1>
           <div className="credits-corps">
             {creditSections.map((section) => (
               <Fragment key={section.heading}>
@@ -44,7 +43,7 @@ export default function CreditsPage() {
         </div>
       </div>
 
-      <CreditsFooter />
+      <CreditsFooter ui={ui} />
     </>
   );
 }

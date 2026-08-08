@@ -6,7 +6,8 @@ Portfolio personnel présentant mon parcours, mes projets et mes compétences de
 
 ## Aperçu
 
-Site d'une seule page, en français, structuré en sections accessibles depuis la navigation :
+Site d'une seule page, disponible en anglais et en français, structuré en
+sections accessibles depuis la navigation :
 
 | Section      | Contenu                                                                                                              |
 | ------------ | -------------------------------------------------------------------------------------------------------------------- |
@@ -17,7 +18,17 @@ Site d'une seule page, en français, structuré en sections accessibles depuis l
 | Objectifs    | Objectifs professionnels                                                                                             |
 | Me contacter | Email, CV PDF, LinkedIn                                                                                              |
 
-Une page annexe `/credits` regroupe les crédits des ressources utilisées.
+Une page annexe regroupe les crédits des ressources utilisées.
+
+| Langue   | Accueil | Crédits        |
+| -------- | ------- | -------------- |
+| Anglais  | `/`     | `/credits`     |
+| Français | `/fr`   | `/fr/credits`  |
+
+L'anglais est la langue par défaut et occupe la racine. Chaque langue a ses
+propres URLs, déclarées l'une à l'autre par `hreflang` : les deux versions sont
+indexables et partageables, là où une bascule côté client n'aurait donné qu'une
+seule adresse aux moteurs de recherche.
 
 ## Technologies
 
@@ -25,6 +36,7 @@ Une page annexe `/credits` regroupe les crédits des ressources utilisées.
 - **React 19** et **TypeScript** en mode strict
 - **Tailwind CSS 4** pour les tokens de la charte graphique et les utilitaires
 - **CSS applicatif** découpé par composant, chargé par bundle de page
+- **Bilingue** sans dépendance externe : contenu typé par langue dans `src/content`, chaînes d'interface dans `src/i18n`
 - Polices auto-hébergées : _Manrope_ (variable, via `next/font`) et _Gallery Modern_ (webfont locale)
 - Déploiement automatisé par **GitHub Actions** vers GitHub Pages
 

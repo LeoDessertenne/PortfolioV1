@@ -15,5 +15,6 @@
 @import "./theme.css";
 @import "./tokens.css" layer(base);
 @import "./glass.css";
+@import "./language-switcher.css";
 @import "./credits.css";
 @import "./footer.css";
