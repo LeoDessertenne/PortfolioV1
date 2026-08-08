@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 
+import type { UiStrings } from "@/i18n/ui";
 import { navigation } from "@/lib/site";
 
 const MENU_ID = "custom-nav-links";
@@ -15,7 +16,7 @@ const MENU_ID = "custom-nav-links";
  * l'observateur : on retient la derniere section dont le haut est deja passe
  * sous la navbar, ce qui est plus stable qu'un simple seuil de visibilite.
  */
-export function Navbar() {
+export function Navbar({ ui }: { ui: UiStrings }) {
   const [open, setOpen] = useState(false);
   const [activeId, setActiveId] = useState<string | null>(null);
 
@@ -70,7 +71,7 @@ export function Navbar() {
       {/* eslint-disable-next-line @next/next/no-img-element */}
       <img
         src="/Image/menu-btn.png"
-        alt="Ouvrir le menu"
+        alt={ui.nav.openMenu}
         className="hamburger"
         role="button"
         tabIndex={0}
@@ -99,7 +100,7 @@ export function Navbar() {
                 // Sans cela le panneau resterait ouvert par-dessus la section visee.
                 onClick={() => setOpen(false)}
               >
-                {item.label}
+                {ui.nav[item.key]}
               </a>
             </li>
           ))}

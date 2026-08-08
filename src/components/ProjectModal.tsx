@@ -1,5 +1,6 @@
 import { Modal } from "@/components/Modal";
-import type { Project } from "@/data/projects";
+import type { Project } from "@/content/types";
+import type { UiStrings } from "@/i18n/ui";
 
 /**
  * Contenu de la modale d'un projet. L'ordre des blocs est fixe : resume,
@@ -8,10 +9,12 @@ import type { Project } from "@/data/projects";
  */
 export function ProjectModal({
   project,
+  ui,
   open,
   onClose,
 }: {
   project: Project;
+  ui: UiStrings;
   open: boolean;
   onClose: () => void;
 }) {
@@ -19,17 +22,18 @@ export function ProjectModal({
     <Modal
       id={project.id}
       title={project.modalTitle ?? project.title}
+      closeLabel={ui.project.close}
       open={open}
       onClose={onClose}
     >
-      <h3>Résumé</h3>
+      <h3>{ui.project.summary}</h3>
       <p>{project.summary}</p>
 
       {project.extra}
 
       <div className="modal-content-container">
         <div className="skills">
-          <h3>Compétences Développées</h3>
+          <h3>{ui.project.developedSkills}</h3>
           <ul>
             {project.skills.map((skill, index) => (
               <li key={index}>{skill}</li>
@@ -37,7 +41,7 @@ export function ProjectModal({
           </ul>
         </div>
         <div className="languages">
-          <h3>Langages et logiciels utilisés</h3>
+          <h3>{ui.project.languagesUsed}</h3>
           <ul>
             {project.languages.map((language) => (
               <li key={language}>{language}</li>

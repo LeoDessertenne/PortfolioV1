@@ -1,15 +1,4 @@
-export type CreditLink = {
-  /** Intitule affiche au-dessus du lien, absent pour les listes de liens nus. */
-  label?: string;
-  href: string;
-  text: string;
-  title?: string;
-};
-
-export type CreditSection = {
-  heading: string;
-  links: CreditLink[];
-};
+import type { CreditSection } from "@/content/types";
 
 export const creditSections: CreditSection[] = [
   {

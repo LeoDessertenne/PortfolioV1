@@ -1,13 +1,15 @@
 import { SectionHeading } from "@/components/SectionHeading";
-import {
-  professionalQualities,
-  programmingLanguages,
-  tools,
-  type TagGroup,
-} from "@/data/skills";
+import type { TagGroup, ToolGroup } from "@/content/types";
+import type { UiStrings } from "@/i18n/ui";
 
 /** Bloc de competences presente sous forme d'etiquettes. */
-function TagCard({ group, listClassName }: { group: TagGroup; listClassName: string }) {
+function TagCard({
+  group,
+  listClassName,
+}: {
+  group: TagGroup;
+  listClassName: string;
+}) {
   return (
     <div className="container-competence reveal-apparition">
       <h4>{group.title}</h4>
@@ -21,13 +23,23 @@ function TagCard({ group, listClassName }: { group: TagGroup; listClassName: str
 }
 
 /** Section « Compétences » : qualites professionnelles, outils, langages. */
-export function Skills() {
+export function Skills({
+  ui,
+  professionalQualities,
+  tools,
+  programmingLanguages,
+}: {
+  ui: UiStrings;
+  professionalQualities: TagGroup[];
+  tools: ToolGroup[];
+  programmingLanguages: TagGroup[];
+}) {
   return (
     <div id="competences" className="droite">
-      <SectionHeading variant="droite">Compétences</SectionHeading>
+      <SectionHeading variant="droite">{ui.sections.skills}</SectionHeading>
 
       <h3 className="reveal-apparition competences-group-title">
-        Qualités Professionnelles
+        {ui.skills.professional}
       </h3>
       <div className="container-competences">
         {professionalQualities.map((group) => (
@@ -36,7 +48,7 @@ export function Skills() {
       </div>
 
       <h3 className="reveal-apparition competences-group-title">
-        Outils
+        {ui.skills.tools}
       </h3>
       <div className="container-competences">
         {tools.map((group) => (
@@ -60,7 +72,7 @@ export function Skills() {
       </div>
 
       <h3 className="reveal-apparition competences-group-title">
-        Langages de programmation
+        {ui.skills.languages}
       </h3>
       <div className="container-competences skill-tiers">
         {programmingLanguages.map((group) => (

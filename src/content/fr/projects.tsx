@@ -1,48 +1,4 @@
-import type { ReactNode } from "react";
-
-export type ProjectVideo = {
-  /** Titre de section affiche au-dessus du lecteur. */
-  heading: string;
-  src: string;
-  poster?: string;
-};
-
-export type ProjectLink = {
-  href: string;
-  label: string;
-};
-
-export type Project = {
-  /** Identifiant de la modale, repris comme ancre et pour aria-labelledby. */
-  id: string;
-  /** Titre affiche sur la carte. */
-  title: string;
-  /** Titre affiche dans la modale, quand il differe de celui de la carte. */
-  modalTitle?: string;
-  /** Classe portant le visuel de la carte (voir styles/projects.css). */
-  mediaClassName?: string;
-  /** Carte sur deux colonnes. */
-  featured?: boolean;
-  /** Texte de la carte. */
-  excerpt: string;
-  /** Etiquettes technologiques de la carte. */
-  tags: string[];
-  /** Corps de la section « Résumé » de la modale. */
-  summary: ReactNode;
-  /** Blocs libres inseres entre le resume et les colonnes competences/langages. */
-  extra?: ReactNode;
-  skills: ReactNode[];
-  languages: string[];
-  video?: ProjectVideo;
-  /** Mention en italique affichee sous le contenu (hebergement, disponibilite). */
-  note?: ReactNode;
-  links?: ProjectLink[];
-};
-
-export type ProjectGroup = {
-  heading: string;
-  projects: Project[];
-};
+import type { Project, ProjectGroup } from "@/content/types";
 
 const idm: Project = {
   id: "idm",

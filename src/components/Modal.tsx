@@ -42,6 +42,8 @@ function lockBodyScroll(): () => void {
 export type ModalProps = {
   id: string;
   title: string;
+  /** Intitule accessible du bouton de fermeture, traduit. */
+  closeLabel: string;
   open: boolean;
   onClose: () => void;
   children: ReactNode;
@@ -62,7 +64,14 @@ export type ModalProps = {
  * S'y ajoutent trois comportements que Bootstrap fournissait aussi : fermeture
  * par Echap, fermeture au clic sur le fond, et confinement du focus.
  */
-export function Modal({ id, title, open, onClose, children }: ModalProps) {
+export function Modal({
+  id,
+  title,
+  closeLabel,
+  open,
+  onClose,
+  children,
+}: ModalProps) {
   const labelId = `${id}-title`;
   const dialogRef = useRef<HTMLDivElement>(null);
 
@@ -195,7 +204,7 @@ export function Modal({ id, title, open, onClose, children }: ModalProps) {
               <button
                 type="button"
                 className="btn-close"
-                aria-label="Fermer"
+                aria-label={closeLabel}
                 onClick={onClose}
               />
             </div>

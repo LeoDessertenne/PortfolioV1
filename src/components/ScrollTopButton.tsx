@@ -6,9 +6,8 @@ const SHOW_AFTER_PX = 600;
 
 /**
  * Bouton flottant de retour en haut, revele apres 600px de defilement.
- * Portage de l'ancien scripts/script_arrow_home.js.
  */
-export function ScrollTopButton() {
+export function ScrollTopButton({ label }: { label: string }) {
   const [visible, setVisible] = useState(false);
 
   useEffect(() => {
@@ -26,7 +25,7 @@ export function ScrollTopButton() {
       href="#"
       id="arrow-up"
       className={visible ? "show" : undefined}
-      aria-label="Revenir en haut de la page"
+      aria-label={label}
       aria-hidden={!visible}
       tabIndex={visible ? undefined : -1}
     >

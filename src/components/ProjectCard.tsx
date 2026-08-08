@@ -1,11 +1,13 @@
-import type { Project } from "@/data/projects";
+import type { Project } from "@/content/types";
 
 /** Carte cliquable d'un projet, qui ouvre la modale correspondante. */
 export function ProjectCard({
   project,
+  openLabel,
   onOpen,
 }: {
   project: Project;
+  openLabel: string;
   onOpen: () => void;
 }) {
   return (
@@ -36,7 +38,7 @@ export function ProjectCard({
             ))}
           </ul>
           {/* La fleche est ajoutee en ::after pour pouvoir l'animer au survol. */}
-          <p className="projets-plus-infos">Voir le projet</p>
+          <p className="projets-plus-infos">{openLabel}</p>
         </div>
       </button>
     </div>
