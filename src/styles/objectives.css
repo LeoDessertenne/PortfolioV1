@@ -1,0 +1,14 @@
+/**
+ * Section Objectifs.
+ * Portage de l'ancien css/style_objectifs.css.
+ */
+
+.objectifs {
+  font-size: clamp(1.4rem, 2vw, 1.6rem);
+  margin-top: 3%;
+  padding: 0 5%;
+  text-align: left;
+  hyphens: auto;
+  line-height: 1.65;
+  max-width: 65ch;
+}

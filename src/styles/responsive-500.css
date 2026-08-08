@@ -1,0 +1,46 @@
+/**
+ * Ajustements pour les petits ecrans (<= 500px).
+ * Portage de l'ancien css/style_max_500.css.
+ */
+
+@media screen and (max-width: 500px) {
+  header h1 {
+    font-size: 4em;
+  }
+
+  .gauche {
+    margin: 0 15px;
+  }
+
+  .gauche .gauche-box,
+  .droite .droite-box {
+    margin-bottom: 20px;
+  }
+
+  .droite-box h2 {
+    margin-top: 1rem;
+  }
+
+  .projets-container {
+    margin-top: 15px;
+  }
+
+  .projets-container .projets-card {
+    width: 300px;
+    height: 300px;
+  }
+
+  .projets-container .projets-card .card-container {
+    background-color: rgba(255, 255, 255, 0.9);
+    padding: 15px;
+  }
+
+  .projets-container .projets-card .card-container h2 {
+    font-size: 30px;
+  }
+
+  .projets-container .projets-card .card-container p {
+    text-align: center;
+    font-size: 15px;
+  }
+}

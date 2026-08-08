@@ -1,0 +1,294 @@
+/**
+ * Mise en page generale : accueil, alternance des sections claires / sombres,
+ * boutons d'appel a l'action, effets d'apparition.
+ * Portage de l'ancien css/style.css.
+ */
+
+/* ------------------------------------------------------------------ Accueil */
+
+header {
+  padding-top: 5%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  align-items: center;
+  justify-content: space-around;
+  background-color: var(--lightbeige);
+}
+
+header h1 {
+  text-align: center;
+  color: #000000;
+  font-size: 7em;
+  font-weight: 100;
+  white-space: pre-line;
+  opacity: 0;
+  transform: translateY(30px);
+  animation: apparition 1s 0.6s ease-out forwards;
+}
+
+#moi-role {
+  font-size: 1.4em;
+  font-weight: 600;
+  width: 70%;
+  margin: 0 auto;
+  text-align: center;
+  opacity: 0;
+  transform: translateY(30px);
+  animation: apparition 1s 0.8s ease-out forwards;
+}
+
+#moi {
+  font-size: 1.3em;
+  font-weight: 300;
+  color: rgba(2, 0, 58, 0.75);
+  width: 60%;
+  margin: 0.4rem auto 0;
+  text-align: center;
+  box-shadow: none;
+  opacity: 0;
+  transform: translateY(30px);
+  animation: apparition 1s 0.85s ease-out forwards;
+}
+
+#moi a {
+  color: var(--darkblue);
+  text-decoration-thickness: 1px;
+}
+
+#moi a:hover {
+  text-decoration-thickness: 5px;
+}
+
+.hero-cta {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1rem;
+  margin: 1.5rem auto 0;
+  opacity: 0;
+  transform: translateY(30px);
+  animation: apparition 1s 0.85s ease-out forwards;
+}
+
+.hero-btn {
+  display: inline-block;
+  padding: 0.6rem 1.4rem;
+  border-radius: 999px;
+  border: 2px solid var(--darkblue);
+  color: var(--darkblue);
+  text-decoration: none;
+  font-weight: 600;
+  transition:
+    background-color 0.25s,
+    color 0.25s;
+}
+
+.hero-btn:hover {
+  background-color: var(--darkblue);
+  color: var(--lightbeige);
+}
+
+.hero-btn-primary {
+  background-color: var(--darkblue);
+  color: var(--lightbeige);
+}
+
+.hero-btn-primary:hover {
+  opacity: 0.85;
+  color: var(--lightbeige);
+}
+
+.gauche .hero-btn {
+  border-color: var(--lightbeige);
+  color: var(--lightbeige);
+}
+
+.gauche .hero-btn:hover {
+  background-color: var(--lightbeige);
+  color: var(--darkblue);
+}
+
+.gauche .hero-btn-primary {
+  background-color: var(--lightbeige);
+  color: var(--darkblue);
+}
+
+.gauche .hero-btn-primary:hover {
+  color: var(--darkblue);
+}
+
+.photos-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  margin: 0 auto;
+  margin-bottom: 50px;
+}
+
+.photos-container img {
+  display: block;
+  opacity: 0;
+  width: 40px;
+  height: 40px;
+  object-fit: contain;
+  margin: 0;
+  transform: translateY(30px);
+  transition: opacity 0.5s ease-out;
+  animation: apparition 1s 0.9s ease-out forwards;
+}
+
+.photos-container img:hover {
+  opacity: 0.7 !important;
+  transition: all 0.5s ease-out;
+}
+
+/* ------------------------------------- Alternance des sections claires/sombres */
+
+.gauche {
+  background: var(--darkblue);
+  background: linear-gradient(
+    90deg,
+    rgba(2, 0, 36, 1) 0%,
+    rgba(0, 0, 0, 1) 100%
+  );
+  border-radius: 10px;
+  color: var(--lightbeige);
+  margin-left: 12px;
+}
+
+.droite {
+  background-color: var(--lightbeige);
+}
+
+.gauche,
+.droite {
+  padding: 5%;
+}
+
+.gauche .gauche-box h2 {
+  width: 40%;
+  font-size: 4em;
+  text-align: center;
+}
+
+.gauche .gauche-box {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  margin-bottom: 50px;
+}
+
+.droite .droite-box {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  margin-bottom: 50px;
+  flex-direction: row-reverse;
+}
+
+.gauche .p-gauche {
+  padding: 0 50px;
+  margin-left: 40%;
+  font-size: clamp(1.2rem, 2vw, 1.8rem);
+  text-align: left;
+  hyphens: auto;
+  line-height: 1.65;
+  max-width: 65ch;
+}
+
+.droite .p-droite {
+  margin-right: 40%;
+  margin-top: 5%;
+  font-size: clamp(1.2rem, 2vw, 1.8rem);
+  text-align: left;
+  hyphens: auto;
+  line-height: 1.65;
+  max-width: 65ch;
+}
+
+.p-balanced {
+  margin-left: auto !important;
+  margin-right: auto !important;
+  margin-top: 0 !important;
+  float: none;
+}
+
+.gauche .p-gauche p + p,
+.droite .p-droite p + p {
+  margin-top: 1.25rem;
+}
+
+.droite .droite-box hr {
+  flex-grow: 1;
+  height: 3px;
+  background-color: black;
+  margin: 0 20px;
+}
+
+.gauche .gauche-box hr {
+  flex-grow: 1;
+  height: 2px;
+  background-color: white;
+  margin: 0 20px;
+  border: none;
+}
+
+.droite .droite-box h2 {
+  font-size: 4em;
+  width: 40%;
+  text-align: center;
+}
+
+.text-justify {
+  text-align: left !important;
+  hyphens: auto;
+}
+
+/* Reserve l'espace du header sticky et evite que le bouton retour en haut ne
+   masque du texte. */
+#presentation,
+#idtimeline,
+#h-projets,
+#competences,
+#h-objectifs,
+#contact {
+  scroll-margin-top: 90px;
+}
+
+@media screen and (max-width: 1200px) {
+  .gauche .gauche-box,
+  .droite .droite-box {
+    padding-right: 70px;
+  }
+}
+
+@media screen and (max-width: 640px) {
+  .gauche .p-gauche,
+  .droite .p-droite,
+  .objectifs {
+    padding-right: 60px;
+  }
+}
+
+/* ------------------------------------------------------ Effets d'apparition */
+
+.reveal-apparition {
+  opacity: 0;
+  transform: translateY(-30px);
+}
+
+.reveal-visible {
+  opacity: 1;
+  transform: translateY(0);
+  transition: 1s cubic-bezier(0.54, 0.01, 0, 0.99);
+}
+
+@keyframes apparition {
+  100% {
+    opacity: 1;
+    transform: none;
+  }
+}

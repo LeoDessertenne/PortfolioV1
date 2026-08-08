@@ -1,0 +1,22 @@
+/**
+ * Styles de la page de credits, importes par src/app/credits/layout.tsx.
+ *
+ * Cette page ne charge NI le reboot de Bootstrap NI les extraits qui en
+ * dependent, parce que l'ancienne page credits.html ne liait pas Bootstrap :
+ * elle ne reprenait que la charte graphique, le pied de page et ses propres
+ * styles. Ajouter le reboot ici changerait le rendu, notamment en donnant aux
+ * <p> une marge basse de 1rem qu'ils n'ont jamais eue.
+ *
+ * L'ordre reproduit celui des <link> de l'ancienne page :
+ * charte graphique, styles de la page, pied de page, bouton retour.
+ */
+
+@layer theme, base, utilities;
+
+@import "tailwindcss/theme.css" layer(theme);
+@import "tailwindcss/utilities.css" layer(utilities);
+
+@import "./theme.css";
+@import "./tokens.css" layer(base);
+@import "./credits.css";
+@import "./footer.css";

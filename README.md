@@ -6,7 +6,7 @@ Portfolio personnel présentant mon parcours, mes projets et mes compétences de
 
 ## Aperçu
 
-Site statique d'une seule page (`index.html`), en français, structuré en sections accessibles depuis la navigation :
+Site d'une seule page, en français, structuré en sections accessibles depuis la navigation :
 
 | Section      | Contenu                                                                                                              |
 | ------------ | -------------------------------------------------------------------------------------------------------------------- |
@@ -17,20 +17,22 @@ Site statique d'une seule page (`index.html`), en français, structuré en secti
 | Objectifs    | Objectifs professionnels                                                                                             |
 | Me contacter | Email, CV PDF, LinkedIn                                                                                              |
 
-Une page annexe `credits_folder/credits.html` regroupe les crédits des ressources utilisées.
+Une page annexe `/credits` regroupe les crédits des ressources utilisées.
 
 ## Technologies
 
-- **HTML5** : page unique, balisage sémantique, métadonnées SEO
-- **CSS3** : variables CSS pour la charte graphique, feuilles de style découpées par composant, responsive via media queries dédiées
-- **JavaScript (vanilla)** : menu hamburger, flèche de retour en haut, animations au scroll (`IntersectionObserver`), gestion des vidéos dans les modales
-- **Bootstrap 5.3** (CDN) : grille et composants modales
-- **Font Awesome** (CDN) : icônes
-- Polices : _Manrope_ (Google Fonts) et _Gallery Modern_ (webfont locale)
+- **Next.js 15** (App Router) en export statique : le site est prérendu au build en HTML, sans serveur à l'exécution
+- **React 19** et **TypeScript** en mode strict
+- **Tailwind CSS 4** pour les tokens de la charte graphique et les utilitaires
+- **CSS applicatif** découpé par composant, chargé par bundle de page
+- Polices auto-hébergées : _Manrope_ (via `next/font`) et _Gallery Modern_ (webfont locale)
+- Déploiement automatisé par **GitHub Actions** vers GitHub Pages
+
+Le site ne charge aucune ressource tierce à l'exécution : ni CDN, ni Google Fonts, ni script externe.
 
 ## Charte graphique
 
-Les couleurs sont centralisées dans `css/style_charte_graphique.css` :
+Les couleurs sont centralisées dans `src/styles/theme.css` :
 
 | Variable       | Valeur              |
 | -------------- | ------------------- |

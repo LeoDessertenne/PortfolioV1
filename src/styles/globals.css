@@ -1,0 +1,42 @@
+/**
+ * Styles de la page d'accueil, importes par src/app/(accueil)/layout.tsx.
+ *
+ * L'ORDRE DES IMPORTS EST SIGNIFIANT. Il reproduit exactement l'ordre des
+ * balises <link> de l'ancienne page : plusieurs regles se recouvrent d'un
+ * fichier a l'autre et le dernier declare l'emporte. En particulier
+ * objectives.css doit rester apres les fichiers responsive-*.
+ *
+ * Ce bundle ne s'applique volontairement pas a la page de credits, qui ne
+ * chargeait pas Bootstrap dans l'ancien site : voir credits-page.css.
+ *
+ * Architecture des couches :
+ *   theme      -> tokens Tailwind
+ *   base       -> reboot Bootstrap + charte graphique (elements nus)
+ *   components -> extraits Bootstrap (modale, utilitaires typographiques)
+ *   utilities  -> utilitaires Tailwind (prioritaires sur tout ce qui precede)
+ * Les feuilles applicatives restent hors couche : elles priment donc sur les
+ * utilitaires Tailwind, ce qui garantit que le rendu historique ne bouge pas.
+ */
+
+@layer theme, base, components, utilities;
+
+@import "tailwindcss/theme.css" layer(theme);
+@import "tailwindcss/utilities.css" layer(utilities);
+
+@import "./vendor/bootstrap-reboot.css" layer(base);
+@import "./vendor/bootstrap-parts.css" layer(components);
+
+@import "./theme.css";
+@import "./tokens.css" layer(base);
+@import "./layout.css";
+@import "./navbar.css";
+@import "./timeline.css";
+@import "./footer.css";
+@import "./modal.css";
+@import "./scroll-top.css";
+@import "./skills.css";
+@import "./projects.css";
+@import "./responsive-300.css";
+@import "./responsive-500.css";
+@import "./responsive-1000.css";
+@import "./objectives.css";
