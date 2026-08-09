@@ -72,6 +72,11 @@
   text-decoration: none;
   line-height: 1.2;
   cursor: pointer;
+  /* Le bouton de contact porte une adresse e-mail, insecable par defaut :
+     sans cela elle impose sa largeur au bouton et fait deborder la page sur
+     les petits telephones. `anywhere` n'agit qu'a court d'espace. */
+  max-width: 100%;
+  overflow-wrap: anywhere;
   transition:
     transform var(--dur-fast) var(--ease-out),
     box-shadow var(--dur-fast) var(--ease-out),
@@ -175,7 +180,12 @@
   font-size: var(--step-small);
   font-weight: 500;
   line-height: 1.6;
-  white-space: nowrap;
+  /* Le tag tient sur une ligne tant qu'il y a la place, et revient a la
+     ligne plutot que de deborder quand il n'y en a plus : `nowrap` faisait
+     depasser les libelles les plus longs de la coquille sur les petits
+     telephones. */
+  max-width: 100%;
+  overflow-wrap: break-word;
 }
 
 .on-dark .tech-tags li {
