@@ -11,10 +11,12 @@ const MENU_ID = "custom-nav-links";
  * Navigation principale : pilule flottante en verre au-dela de 1100px, panneau
  * plein ecran ouvert par le bouton hamburger en dessous.
  *
- * Le lien de la section a l'ecran recoit la classe `is-active`. Le calcul se
- * fait a partir des positions reelles plutot que du seul declenchement de
- * l'observateur : on retient la derniere section dont le haut est deja passe
- * sous la navbar, ce qui est plus stable qu'un simple seuil de visibilite.
+ * Le lien de la section a l'ecran recoit la classe `is-active` : on retient la
+ * derniere section dont le haut est deja passe sous la navbar. Le calcul est
+ * relance au scroll et au redimensionnement, pas par un IntersectionObserver :
+ * la bande d'observation pouvait etre franchie entiere entre deux frames (saut
+ * d'ancre, scroll rapide) sans qu'aucun callback ne parte, laissant
+ * l'indicateur bloque sur la section precedente.
  */
 export function Navbar({ ui }: { ui: UiStrings }) {
   const [open, setOpen] = useState(false);
@@ -45,25 +47,47 @@ export function Navbar({ ui }: { ui: UiStrings }) {
 
     if (sections.length === 0) return;
 
+    let frame = 0;
+
     const update = () => {
+      frame = 0;
       const offset = window.innerHeight * 0.35;
+
       let current: string | null = null;
-      sections.forEach((section) => {
+      for (const section of sections) {
         if (section.getBoundingClientRect().top <= offset) {
           current = `#${section.id}`;
         }
-      });
+      }
+
+      // En bas de page la derniere section n'atteint pas forcement le seuil :
+      // sans ce rattrapage son lien ne s'allumerait jamais.
+      const doc = document.documentElement;
+      const atBottom = window.scrollY + window.innerHeight >= doc.scrollHeight - 2;
+      const last = sections.at(-1);
+      if (atBottom && last && last.getBoundingClientRect().top < window.innerHeight) {
+        current = `#${last.id}`;
+      }
+
       setActiveId(current);
     };
 
-    update();
-    const observer = new IntersectionObserver(update, {
-      rootMargin: "-35% 0px -55% 0px",
-      threshold: 0,
-    });
-    sections.forEach((section) => observer.observe(section));
+    // Un rAF par salve d'evenements : le calcul reste lie a la position reelle
+    // sans recalculer a chaque tick de scroll.
+    const schedule = () => {
+      if (frame) return;
+      frame = requestAnimationFrame(update);
+    };
 
-    return () => observer.disconnect();
+    update();
+    window.addEventListener("scroll", schedule, { passive: true });
+    window.addEventListener("resize", schedule);
+
+    return () => {
+      if (frame) cancelAnimationFrame(frame);
+      window.removeEventListener("scroll", schedule);
+      window.removeEventListener("resize", schedule);
+    };
   }, []);
 
   return (

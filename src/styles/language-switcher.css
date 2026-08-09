@@ -167,25 +167,14 @@
     left: var(--space-sm);
   }
 
-  /* Meme flou que les autres surfaces flottantes du mobile (hamburger,
-     bouton de retour en haut) : --blur-md et la saturation standard. */
-  .lang-switch-button {
-    -webkit-backdrop-filter: blur(var(--blur-md)) saturate(var(--saturate));
-    backdrop-filter: blur(var(--blur-md)) saturate(var(--saturate));
-
-    /* L'attenuation porte sur le bouton, jamais sur son conteneur.
-       Un ancetre en opacity < 1 devient un « backdrop root » : le
-       backdrop-filter du bouton n'aurait alors plus rien a flouter et la
-       bulle paraitrait plate, comme c'etait le cas. Portee par l'element qui
-       filtre lui-meme, l'opacite s'applique au resultat et le verre tient. */
-    opacity: 0.75;
-  }
-
-  /* Une fois ouvert ou survole, le selecteur redevient pleinement lisible. */
-  .lang-switch-button:hover,
-  .lang-switch:focus-within .lang-switch-button {
-    opacity: 1;
-  }
+  /* Aucun reglage de verre propre au mobile : le bouton garde celui de la
+     pilule de navigation.
+     L'attenuation par `opacity` qui se trouvait ici est justement ce qui
+     aplatissait la bulle. Meme posee sur l'element qui filtre, une opacite
+     < 1 le transforme en groupe compose : WebKit rend alors le
+     backdrop-filter inoperant, et le peu de flou qui subsiste ailleurs est
+     delave par la transparence. Un verre discret se regle par l'alpha du
+     fond, pas par l'opacite de la surface. */
 
   /* Le menu s'ouvre sous le bord gauche du bouton, donc vers l'interieur. */
   .lang-switch-menu {

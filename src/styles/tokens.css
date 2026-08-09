@@ -147,6 +147,17 @@
 html {
   scroll-behavior: smooth;
   -webkit-text-size-adjust: 100%;
+
+  /* Le rognage horizontal est porte par la racine, et non par <body>.
+     Sur <body>, `overflow-x: hidden` en fait une boite de defilement des
+     qu'un element deborde ; les moteurs mobiles ancrent alors les enfants
+     `position: fixed` a ce conteneur plutot qu'a la fenetre, et la pastille
+     de langue comme le hamburger repartent avec le scroll.
+     `clip` rogne sans creer de conteneur de defilement, donc sans jamais
+     rompre le positionnement fixe ; `hidden` reste en repli pour les
+     moteurs anterieurs a sa prise en charge. */
+  overflow-x: hidden;
+  overflow-x: clip;
 }
 
 body {
@@ -159,7 +170,6 @@ body {
   line-height: 1.65;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
-  overflow-x: hidden;
 }
 
 img,
