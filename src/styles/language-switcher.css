@@ -1,0 +1,184 @@
+/* ==========================================================================
+   SELECTEUR DE LANGUE — bulle en verre, en haut a droite
+   ========================================================================== */
+
+.lang-switch {
+  position: fixed;
+  top: var(--space-sm);
+  right: var(--space-sm);
+  z-index: 940;
+}
+
+.lang-switch-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  height: 40px;
+  padding: 0 0.7rem 0 0.6rem;
+  border-radius: var(--radius-pill);
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  background: linear-gradient(
+    145deg,
+    rgba(255, 253, 246, 0.72),
+    rgba(255, 250, 234, 0.5)
+  );
+  box-shadow:
+    var(--shadow-md),
+    var(--sheen-light);
+  color: var(--text-body);
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  line-height: 1;
+  cursor: pointer;
+  transition:
+    color var(--dur-fast) var(--ease-out),
+    transform var(--dur-fast) var(--ease-out),
+    box-shadow var(--dur-fast) var(--ease-out);
+}
+
+/* Meme reglage de verre que la pilule de navigation : rayon modere et
+   saturation forte, pour laisser passer une nappe de couleur sans nuire
+   a la lisibilite du libelle. */
+@supports ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+  .lang-switch-button {
+    -webkit-backdrop-filter: blur(var(--blur-nav)) saturate(180%);
+    backdrop-filter: blur(var(--blur-nav)) saturate(180%);
+    background: linear-gradient(
+      145deg,
+      rgba(255, 253, 246, 0.62),
+      rgba(255, 250, 234, 0.5)
+    );
+  }
+}
+
+.lang-switch-button:hover {
+  color: var(--text-strong);
+  transform: translateY(-1px);
+  box-shadow:
+    var(--shadow-lg),
+    var(--sheen-light);
+}
+
+.lang-switch-globe {
+  display: grid;
+  place-items: center;
+  color: var(--ink-800);
+  opacity: 0.75;
+}
+
+/* La fleche pivote quand le menu est ouvert : le bouton dit son etat. */
+.lang-switch-chevron {
+  display: grid;
+  place-items: center;
+  opacity: 0.6;
+  transition: transform var(--dur-fast) var(--ease-out);
+}
+
+.lang-switch-button[aria-expanded="true"] .lang-switch-chevron {
+  transform: rotate(180deg);
+}
+
+/* --------------------------------------------------------------- Menu ouvert */
+
+.lang-switch-menu {
+  position: absolute;
+  top: calc(100% + 0.5rem);
+  right: 0;
+  min-width: 11rem;
+  margin: 0;
+  padding: 0.35rem;
+  list-style: none;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--glass-light-border);
+  background: linear-gradient(
+    160deg,
+    rgba(255, 253, 246, 0.94),
+    rgba(255, 250, 234, 0.9)
+  );
+  -webkit-backdrop-filter: blur(var(--blur-lg)) saturate(var(--saturate));
+  backdrop-filter: blur(var(--blur-lg)) saturate(var(--saturate));
+  box-shadow:
+    var(--shadow-lg),
+    var(--sheen-light);
+}
+
+.lang-switch-menu[hidden] {
+  display: none;
+}
+
+.lang-switch-option {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  padding: 0.5rem 0.6rem;
+  border-radius: var(--radius-sm);
+  color: var(--text-body);
+  font-family: var(--font-body);
+  font-size: 0.9rem;
+  font-weight: 600;
+  text-decoration: none;
+  white-space: nowrap;
+  transition:
+    background-color var(--dur-fast) var(--ease-out),
+    color var(--dur-fast) var(--ease-out);
+}
+
+.lang-switch-option:hover {
+  background: rgba(2, 0, 58, 0.06);
+  color: var(--text-strong);
+}
+
+/* Pastille du code langue, reprise de l'onglet actif de la navigation. */
+.lang-switch-code {
+  display: grid;
+  place-items: center;
+  min-width: 2rem;
+  padding: 0.15rem 0.4rem;
+  border-radius: var(--radius-pill);
+  border: 1px solid rgba(2, 0, 58, 0.18);
+  background: rgba(255, 255, 255, 0.5);
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+}
+
+.lang-switch-option.is-current {
+  color: var(--text-strong);
+}
+
+.lang-switch-option.is-current .lang-switch-code {
+  border-color: transparent;
+  background: linear-gradient(145deg, var(--ink-800), var(--ink-950));
+  color: var(--cream-100);
+}
+
+/* ==========================================================================
+   MOBILE
+   Le bouton hamburger occupe le coin : le selecteur se decale a sa gauche.
+   ========================================================================== */
+
+@media screen and (max-width: 1100px) {
+  /* Le hamburger occupe le coin droit : le selecteur passe a gauche, ou il a
+     toute la place et ne risque plus de se retrouver a l'etroit contre lui. */
+  .lang-switch {
+    right: auto;
+    left: var(--space-sm);
+  }
+
+  /* Aucun reglage de verre propre au mobile : le bouton garde celui de la
+     pilule de navigation.
+     L'attenuation par `opacity` qui se trouvait ici est justement ce qui
+     aplatissait la bulle. Meme posee sur l'element qui filtre, une opacite
+     < 1 le transforme en groupe compose : WebKit rend alors le
+     backdrop-filter inoperant, et le peu de flou qui subsiste ailleurs est
+     delave par la transparence. Un verre discret se regle par l'alpha du
+     fond, pas par l'opacite de la surface. */
+
+  /* Le menu s'ouvre sous le bord gauche du bouton, donc vers l'interieur. */
+  .lang-switch-menu {
+    right: auto;
+    left: 0;
+  }
+}

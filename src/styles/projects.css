@@ -1,0 +1,240 @@
+/* Portage de css/style_projects.css de la branche feature/ui-glass. */
+/* ==========================================================================
+   PROJETS — grille de cartes en verre
+   ========================================================================== */
+
+/* Intertitre par année */
+.BUT-year {
+    margin: var(--space-lg) 0 0;
+    font-family: var(--font-body);
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--text-on-dark-muted);
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+}
+
+.BUT-year::after {
+    content: "";
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(
+        to right,
+        rgba(255, 250, 234, 0.28),
+        transparent
+    );
+}
+
+/* auto-fill (et non auto-fit) : les pistes vides sont conservées, ce qui
+   évite qu'une section d'un seul projet ne s'étire sur toute la largeur. */
+.projets-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(min(300px, 100%), 1fr));
+    gap: var(--space-md);
+    margin-top: var(--space-md);
+}
+
+.projets-card--featured {
+    grid-column: span 2;
+}
+
+@media screen and (max-width: 760px) {
+    .projets-card--featured {
+        grid-column: span 1;
+    }
+}
+
+/* --- Carte --- */
+
+.projets-container .projets-card .card-container {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    margin: 0;
+    text-align: left;
+    font: inherit;
+    cursor: pointer;
+    overflow: hidden;
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--glass-light-border);
+    background: linear-gradient(
+        145deg,
+        rgba(255, 253, 246, 0.9),
+        rgba(255, 250, 234, 0.78)
+    );
+    box-shadow: var(--shadow-md), var(--sheen-light);
+    color: var(--text-body);
+    transition:
+        transform var(--dur-mid) var(--ease-out),
+        box-shadow var(--dur-mid) var(--ease-out);
+}
+
+@supports ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+    .projets-container .projets-card .card-container {
+        -webkit-backdrop-filter: blur(var(--blur-md)) saturate(var(--saturate));
+        backdrop-filter: blur(var(--blur-md)) saturate(var(--saturate));
+        background: linear-gradient(
+            145deg,
+            rgba(255, 253, 246, 0.96),
+            rgba(255, 250, 234, 0.9)
+        );
+    }
+}
+
+.card-container:hover {
+    transform: translateY(-6px);
+    box-shadow: var(--shadow-xl), var(--sheen-light);
+}
+
+/* --- Visuel --- */
+
+.card-media {
+    position: relative;
+    height: 200px;
+    width: 100%;
+    background-color: var(--ink-900);
+    background-size: cover;
+    background-position: center;
+    transition: transform var(--dur-slow) var(--ease-out);
+}
+
+/* Voile qui unifie des visuels de qualités très différentes */
+.card-media::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+        to top,
+        rgba(5, 4, 31, 0.35),
+        transparent 55%
+    );
+}
+
+.projets-card--featured .card-media {
+    height: 260px;
+}
+
+@media screen and (max-width: 760px) {
+    .projets-card--featured .card-media {
+        height: 200px;
+    }
+}
+
+.card-container:hover .card-media {
+    transform: scale(1.05);
+}
+
+/* --- Contenu --- */
+
+.card-body {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    flex: 1;
+    padding: clamp(1.1rem, 2.5vw, 1.5rem);
+}
+
+.projets-container .projets-card .card-container h2 {
+    font-family: var(--font-body);
+    font-size: clamp(1.15rem, 1vw + 1rem, 1.4rem);
+    font-weight: 700;
+    line-height: 1.25;
+    letter-spacing: -0.01em;
+    color: var(--text-strong);
+}
+
+.projets-container .projets-card .card-container p {
+    font-size: 0.95rem;
+    line-height: 1.6;
+    text-align: left;
+    hyphens: auto;
+    text-wrap: pretty;
+    color: var(--text-body);
+}
+
+.projets-container .projets-card .card-container .card-body > p:first-of-type {
+    flex: 1;
+}
+
+/* Les cartes sont claires même dans une section sombre : on rétablit
+   la version « sur fond clair » des pastilles. */
+.on-dark .card-tags li {
+    border-color: rgba(2, 0, 58, 0.18);
+    background: rgba(255, 255, 255, 0.55);
+    color: var(--text-body);
+}
+
+.card-tags {
+    gap: 0.4rem;
+    margin: 0;
+}
+
+.card-tags li {
+    font-size: 0.75rem;
+    padding: 0.15rem 0.65rem;
+}
+
+/* La flèche est produite en CSS pour pouvoir l'animer au survol */
+.projets-plus-infos {
+    margin-top: auto;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    white-space: nowrap;
+    font-size: 0.9rem !important;
+    font-weight: 700 !important;
+    color: var(--ink-800) !important;
+}
+
+.projets-plus-infos::after {
+    content: "→";
+    transition: transform var(--dur-fast) var(--ease-out);
+}
+
+.card-container:hover .projets-plus-infos::after {
+    transform: translateX(4px);
+}
+
+/* --- Visuels --- */
+
+.seville-card {
+    background-image: url("/Image/seville.png");
+}
+
+.bataille-de-boule-card {
+    background-image: url("/Image/bataille_de_boules.png");
+}
+
+.bdd-card {
+    background-image: url("/Image/bdd.png");
+}
+
+.ihm-card {
+    background-image: url("/Image/ihm.png");
+}
+
+.algo-card {
+    background-image: url("/Image/algo.png");
+}
+
+.pmp-card {
+    background-image: url("/Image/PimpMyPaids.png");
+}
+
+.la-card {
+    background-image: url("/Image/LA.png");
+}
+
+.idm-card {
+    background-image: url("/Image/idm.png");
+}
+
+.optimisation-algo-card {
+    background-image: url("/Image/opti-algo.png");
+}

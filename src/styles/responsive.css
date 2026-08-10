@@ -1,0 +1,104 @@
+/* Portage de css/style_responsive.css de la branche feature/ui-glass. */
+/* ==========================================================================
+   RESPONSIVE — remplace style_max_1000 / _500 / _300
+   L'essentiel de l'adaptation est porté par les clamp() et les grilles
+   auto-fit ; ce fichier ne traite que les ruptures réelles.
+   ========================================================================== */
+
+/* --- Tablette : l'en-tête de section passe à la verticale --- */
+@media screen and (max-width: 860px) {
+    .gauche-box,
+    .droite-box {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.75rem;
+        margin-bottom: var(--space-md);
+    }
+
+    .droite-box {
+        align-items: flex-end;
+    }
+
+    .gauche-box h2,
+    .droite-box h2 {
+        white-space: normal;
+    }
+
+    .gauche-box hr,
+    .droite-box hr {
+        width: 100%;
+        flex: 0 0 auto;
+    }
+}
+
+/* --- Mobile --- */
+@media screen and (max-width: 560px) {
+    /* La gouttière est déjà minimale via --shell-gutter, on n'ajuste que
+       l'espacement vertical entre sections. */
+    .page-shell {
+        gap: var(--space-lg);
+    }
+
+    .hero {
+        gap: var(--space-md);
+    }
+
+    .hero-card {
+        padding: 1.4rem 1.1rem;
+    }
+
+    .gauche,
+    .droite {
+        padding: 1.4rem 1.1rem;
+        border-radius: var(--radius-lg);
+    }
+
+    /* Le titre reste à gauche : plus lisible que l'alternance sur mobile */
+    .droite-box {
+        align-items: flex-start;
+    }
+
+    .droite-box h2 {
+        text-align: left;
+    }
+
+    .detail-outil li {
+        width: 72px;
+    }
+
+    .detail-outil li img {
+        height: 36px;
+        width: 36px;
+    }
+
+    .card-media,
+    .projets-card--featured .card-media {
+        height: 170px;
+    }
+}
+
+/* --- Très petits écrans --- */
+@media screen and (max-width: 340px) {
+    .hero-cta {
+        flex-direction: column;
+        align-items: stretch;
+        width: 100%;
+    }
+
+    .detail-outil {
+        justify-content: center;
+    }
+}
+
+/* --- Écrans courts en paysage : le hero ne doit pas déborder --- */
+@media screen and (max-height: 640px) and (orientation: landscape) {
+    .hero {
+        min-height: auto;
+        padding-top: calc(var(--nav-offset) + var(--space-md));
+        padding-bottom: var(--space-lg);
+    }
+
+    .hero-scroll {
+        display: none;
+    }
+}
