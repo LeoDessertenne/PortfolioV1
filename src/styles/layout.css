@@ -1,0 +1,339 @@
+/* ==========================================================================
+   LAYOUT — coquille de page, hero et panneaux de section
+   Portage de css/style.css de la branche feature/ui-glass.
+   ========================================================================== */
+
+.page-shell {
+  width: 100%;
+  max-width: var(--content-max);
+  margin: 0 auto;
+  padding: 0 var(--shell-gutter) var(--space-xl);
+  display: flex;
+  flex-direction: column;
+  gap: clamp(2.5rem, 6vw, 5.5rem);
+}
+
+/* ==========================================================================
+   HERO
+   ========================================================================== */
+
+.hero {
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-lg);
+  text-align: center;
+  padding: calc(var(--nav-offset) + var(--space-lg)) 0 var(--space-xl);
+}
+
+.hero-title {
+  font-size: var(--step-hero);
+  line-height: 0.95;
+  letter-spacing: -0.02em;
+  background: linear-gradient(
+    155deg,
+    var(--ink-900) 0%,
+    var(--ink-700) 45%,
+    var(--accent-indigo) 130%
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: apparition 1s 0.35s var(--ease-out) backwards;
+}
+
+/* Bloc d'introduction : pose directement sur le fond, sans surface */
+.hero-card {
+  width: min(100%, 720px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-md);
+  animation: apparition 1s 0.55s var(--ease-out) backwards;
+}
+
+#moi-role {
+  font-size: var(--step-h3);
+  font-weight: 700;
+  color: var(--text-strong);
+  letter-spacing: -0.01em;
+}
+
+/* Volontairement plus petit que --step-lead : dans la carte du hero,
+   le texte des sections serait trop massif. */
+#moi {
+  max-width: 54ch;
+  font-size: clamp(1.05rem, 1.3vw, 1.3rem);
+  font-weight: 400;
+  color: var(--text-body);
+  line-height: 1.7;
+  text-wrap: pretty;
+}
+
+#moi a {
+  color: var(--ink-800);
+  font-weight: 600;
+  text-decoration: none;
+  background-image: linear-gradient(currentColor, currentColor);
+  background-size: 100% 1px;
+  background-repeat: no-repeat;
+  background-position: 0 100%;
+  transition: background-size var(--dur-fast) var(--ease-out);
+}
+
+#moi a:hover {
+  background-size: 100% 2px;
+}
+
+.hero-cta {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--space-xs);
+}
+
+/* Dans une section, les actions s'alignent sur le texte plutot qu'au centre */
+.gauche .hero-cta,
+.droite .hero-cta {
+  justify-content: flex-start;
+  margin-top: var(--space-md);
+}
+
+/* --- Reseaux sociaux --- */
+
+.photos-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: var(--space-xs);
+}
+
+.photos-container a {
+  display: grid;
+  place-items: center;
+  width: 46px;
+  height: 46px;
+  border-radius: var(--radius-pill);
+  border: 1px solid rgba(2, 0, 58, 0.14);
+  background: rgba(255, 255, 255, 0.4);
+  -webkit-backdrop-filter: blur(var(--blur-sm));
+  backdrop-filter: blur(var(--blur-sm));
+  transition:
+    transform var(--dur-fast) var(--ease-out),
+    background-color var(--dur-fast) var(--ease-out),
+    box-shadow var(--dur-fast) var(--ease-out);
+}
+
+.photos-container a:hover {
+  transform: translateY(-3px);
+  background: rgba(255, 255, 255, 0.72);
+  box-shadow: var(--shadow-sm);
+}
+
+.photos-container img {
+  display: block;
+  width: 22px;
+  height: 22px;
+  object-fit: contain;
+  opacity: 0.75;
+  transition: opacity var(--dur-fast) var(--ease-out);
+}
+
+.photos-container a:hover img {
+  opacity: 1;
+}
+
+/* Indicateur de defilement */
+.hero-scroll {
+  display: grid;
+  place-items: center;
+  gap: 0.5rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  text-decoration: none;
+  animation: apparition 1s 1s var(--ease-out) backwards;
+}
+
+.hero-scroll span {
+  display: block;
+  width: 1px;
+  height: 42px;
+  background: linear-gradient(to bottom, rgba(10, 9, 48, 0.4), transparent);
+  animation: scroll-hint 2.2s var(--ease-in-out) infinite;
+}
+
+@keyframes scroll-hint {
+  0%,
+  100% {
+    transform: scaleY(0.4);
+    transform-origin: top;
+    opacity: 0.3;
+  }
+  50% {
+    transform: scaleY(1);
+    transform-origin: top;
+    opacity: 1;
+  }
+}
+
+/* ==========================================================================
+   SECTIONS
+   Seules les sections sombres (.gauche) forment un panneau : les sections
+   claires (.droite) reposent a meme le fond creme, comme a l'origine.
+   ========================================================================== */
+
+.gauche,
+.droite {
+  padding: clamp(1.75rem, 5vw, 3.5rem);
+  scroll-margin-top: var(--nav-offset);
+}
+
+.gauche {
+  border-radius: var(--radius-xl);
+  color: var(--text-on-dark-body);
+}
+
+.gauche h2,
+.gauche h3,
+.gauche h4 {
+  color: var(--text-on-dark);
+}
+
+.gauche a:not(.btn-glass) {
+  color: var(--cream-100);
+  font-weight: 600;
+  text-decoration-color: rgba(255, 250, 234, 0.45);
+  text-underline-offset: 3px;
+  transition: text-decoration-color var(--dur-fast) var(--ease-out);
+}
+
+.gauche a:not(.btn-glass):hover {
+  text-decoration-color: var(--cream-100);
+}
+
+/* --- En-tete de section : titre + filet degrade --- */
+
+.gauche-box,
+.droite-box {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+  width: 100%;
+  margin-bottom: var(--space-lg);
+}
+
+/* La direction alterne : c'est le rythme du design d'origine */
+.droite-box {
+  flex-direction: row-reverse;
+}
+
+.gauche-box h2,
+.droite-box h2 {
+  flex: 0 0 auto;
+  font-size: var(--step-h2);
+  text-align: left;
+  white-space: nowrap;
+}
+
+.droite-box h2 {
+  text-align: right;
+}
+
+.gauche-box hr,
+.droite-box hr {
+  flex: 1 1 auto;
+  height: 1px;
+  min-width: 2rem;
+  border: none;
+  opacity: 1;
+}
+
+.droite-box hr {
+  background: linear-gradient(
+    to left,
+    transparent,
+    rgba(10, 9, 48, 0.28) 35%,
+    rgba(10, 9, 48, 0.28)
+  );
+}
+
+.gauche-box hr {
+  background: linear-gradient(
+    to right,
+    transparent,
+    rgba(255, 250, 234, 0.35) 35%,
+    rgba(255, 250, 234, 0.35)
+  );
+}
+
+/* --- Corps de texte des sections --- */
+
+.p-droite,
+.p-gauche {
+  max-width: var(--measure);
+  font-size: var(--step-lead);
+  line-height: 1.75;
+  hyphens: auto;
+  text-wrap: pretty;
+}
+
+.p-droite {
+  color: var(--text-body);
+}
+
+.p-gauche {
+  color: var(--text-on-dark-body);
+}
+
+.section-lead {
+  max-width: var(--measure);
+  font-size: var(--step-lead);
+  line-height: 1.7;
+  color: var(--text-on-dark-body);
+  text-wrap: pretty;
+}
+
+.droite .section-lead {
+  color: var(--text-body);
+}
+
+/* ==========================================================================
+   ANIMATIONS DE REVELATION
+   ========================================================================== */
+
+.reveal-apparition {
+  opacity: 0;
+  transform: translateY(24px);
+}
+
+.reveal-visible {
+  opacity: 1;
+  transform: translateY(0);
+  transition:
+    opacity var(--dur-slow) var(--ease-out),
+    transform var(--dur-slow) var(--ease-out);
+}
+
+/* Les animations d'entree partent de cet etat et reviennent au style
+   normal de l'element. Elles s'utilisent avec animation-fill-mode:
+   backwards, jamais forwards : une animation d'opacite qui persiste apres
+   sa fin maintient l'element sur sa propre couche de compositing, ce qui
+   l'exclut du backdrop-filter de la navbar. */
+@keyframes apparition {
+  from {
+    opacity: 0;
+    transform: translateY(28px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal-apparition {
+    opacity: 1;
+    transform: none;
+  }
+}

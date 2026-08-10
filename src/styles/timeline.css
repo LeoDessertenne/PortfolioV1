@@ -1,0 +1,181 @@
+/* Portage de css/style_timeline.css de la branche feature/ui-glass. */
+/* ==========================================================================
+   PARCOURS — timeline alternée, cartes navy en verre
+   ========================================================================== */
+
+.timeline-shell {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding: var(--space-md) 0;
+}
+
+.timeline {
+    position: relative;
+    width: 100%;
+    max-width: 860px;
+    margin: 0 auto;
+}
+
+.timeline ul {
+    list-style: none;
+    margin: 0;
+    padding-left: 0 !important;
+}
+
+.timeline ul li {
+    position: relative;
+    padding: clamp(1.25rem, 3vw, 1.75rem);
+    margin-bottom: var(--space-md);
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--glass-dark-border);
+    background: var(--panel-dark);
+    box-shadow: var(--shadow-md), var(--sheen-dark);
+    color: var(--text-on-dark-body);
+}
+
+@supports ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+    .timeline ul li {
+        -webkit-backdrop-filter: blur(var(--blur-md)) saturate(var(--saturate));
+        backdrop-filter: blur(var(--blur-md)) saturate(var(--saturate));
+        background: var(--panel-dark);
+    }
+}
+
+.timeline ul li:last-child {
+    margin-bottom: 0;
+}
+
+.timeline-content h2 {
+    font-family: var(--font-body);
+    font-weight: 700;
+    font-size: clamp(1.25rem, 2.2vw, 1.6rem);
+    line-height: 1.25;
+    letter-spacing: -0.01em;
+    color: var(--text-on-dark);
+    margin-bottom: 0.5rem;
+}
+
+.timeline-content p {
+    font-size: 1rem;
+    line-height: 1.7;
+    font-weight: 300;
+    text-align: left;
+    hyphens: auto;
+    text-wrap: pretty;
+    color: var(--text-on-dark-body);
+}
+
+.timeline-content a {
+    color: var(--cream-100);
+    font-weight: 600;
+    text-underline-offset: 3px;
+    text-decoration-color: rgba(255, 250, 234, 0.45);
+    transition: text-decoration-color var(--dur-fast) var(--ease-out);
+}
+
+.timeline-content a:hover {
+    text-decoration-color: var(--cream-100);
+}
+
+.timeline-content .date {
+    display: inline-block;
+    margin-bottom: 0.75rem;
+    padding: 0.2rem 0.75rem;
+    border-radius: var(--radius-pill);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    background: rgba(255, 255, 255, 0.08);
+    font-family: var(--font-body);
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-on-dark-muted);
+}
+
+/* --- Disposition alternée sur grand écran --- */
+
+@media only screen and (min-width: 800px) {
+    .timeline::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 2px;
+        height: 100%;
+        border-radius: var(--radius-pill);
+        background: linear-gradient(
+            to bottom,
+            transparent,
+            rgba(10, 9, 48, 0.22) 12%,
+            rgba(10, 9, 48, 0.22) 88%,
+            transparent
+        );
+    }
+
+    .timeline ul li {
+        width: calc(50% - 2.25rem);
+        margin-bottom: var(--space-lg);
+    }
+
+    .timeline ul li:nth-child(odd) {
+        float: left;
+        clear: right;
+        border-top-right-radius: 4px;
+    }
+
+    .timeline ul li:nth-child(even) {
+        float: right;
+        clear: left;
+        border-top-left-radius: 4px;
+    }
+
+    /* Pastille lumineuse sur la colonne vertébrale */
+    .timeline ul li::before {
+        content: "";
+        position: absolute;
+        top: 2rem;
+        height: 14px;
+        width: 14px;
+        border-radius: 50%;
+        background: var(--ink-900);
+        border: 2px solid var(--cream-100);
+        box-shadow: 0 0 0 4px rgba(79, 70, 229, 0.18);
+    }
+
+    .timeline ul li:nth-child(odd)::before {
+        right: -2.75rem;
+        transform: translateX(50%);
+    }
+
+    .timeline ul li:nth-child(even)::before {
+        left: -2.75rem;
+        transform: translateX(-50%);
+    }
+
+    /* Trait de liaison vers la colonne */
+    .timeline ul li::after {
+        content: "";
+        position: absolute;
+        top: calc(2rem + 6px);
+        width: 2.25rem;
+        height: 1px;
+        background: rgba(10, 9, 48, 0.22);
+    }
+
+    .timeline ul li:nth-child(odd)::after {
+        right: -2.25rem;
+    }
+
+    .timeline ul li:nth-child(even)::after {
+        left: -2.25rem;
+    }
+
+    /* Purge du flottement pour ne pas casser le flux de la page */
+    .timeline ul::after {
+        content: "";
+        display: block;
+        clear: both;
+    }
+}

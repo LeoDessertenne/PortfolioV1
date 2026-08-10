@@ -1,0 +1,20 @@
+/**
+ * Styles de la page de credits, importes par src/app/credits/layout.tsx.
+ *
+ * Cette page ne charge NI le reboot de Bootstrap NI les extraits qui en
+ * dependent : comme dans la branche feature/ui-glass, credits.html ne liait
+ * que la charte graphique, les primitives de verre, ses propres styles et le
+ * pied de page. Le systeme de modale n'y sert a rien.
+ */
+
+@layer theme, base, utilities;
+
+@import "tailwindcss/theme.css" layer(theme);
+@import "tailwindcss/utilities.css" layer(utilities);
+
+@import "./theme.css";
+@import "./tokens.css" layer(base);
+@import "./glass.css";
+@import "./language-switcher.css";
+@import "./credits.css";
+@import "./footer.css";

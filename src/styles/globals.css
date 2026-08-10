@@ -1,0 +1,43 @@
+/**
+ * Styles de la page d'accueil, importes par src/app/(accueil)/layout.tsx.
+ *
+ * L'ordre reproduit celui des <link> de la branche feature/ui-glass :
+ *   1. socle    -> tokens, reset, typographie
+ *   2. verre    -> primitives (panneaux, boutons, pastilles)
+ *   3. layout   -> coquille, sections et composants
+ *   4. responsive
+ *
+ * Ce bundle ne s'applique volontairement pas a la page de credits, qui ne
+ * charge pas Bootstrap : voir credits-page.css.
+ *
+ * Architecture des couches :
+ *   theme      -> tokens Tailwind
+ *   base       -> reboot Bootstrap + charte graphique (elements nus)
+ *   components -> extraits Bootstrap (systeme de modale)
+ *   utilities  -> utilitaires Tailwind (prioritaires sur tout ce qui precede)
+ * Les feuilles applicatives restent hors couche : elles priment donc sur les
+ * utilitaires Tailwind.
+ */
+
+@layer theme, base, components, utilities;
+
+@import "tailwindcss/theme.css" layer(theme);
+@import "tailwindcss/utilities.css" layer(utilities);
+
+@import "./vendor/bootstrap-reboot.css" layer(base);
+@import "./vendor/bootstrap-parts.css" layer(components);
+
+@import "./theme.css";
+@import "./tokens.css" layer(base);
+@import "./glass.css";
+@import "./layout.css";
+@import "./navbar.css";
+@import "./timeline.css";
+@import "./projects.css";
+@import "./skills.css";
+@import "./objectives.css";
+@import "./modal.css";
+@import "./scroll-top.css";
+@import "./footer.css";
+@import "./language-switcher.css";
+@import "./responsive.css";

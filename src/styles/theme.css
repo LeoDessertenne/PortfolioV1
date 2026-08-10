@@ -1,0 +1,17 @@
+/**
+ * Tokens exposes a Tailwind, partages par les deux bundles CSS (globals.css
+ * pour l'accueil, credits-page.css pour la page de credits).
+ *
+ * Le reste de la charte (echelles navy et creme, verre, ombres, rayons,
+ * espacements, typographie fluide) vit dans tokens.css : ces valeurs-la sont
+ * consommees par le CSS applicatif, pas par des utilitaires Tailwind.
+ */
+@theme {
+  --color-darkblue: #02003a;
+  --color-lightbeige: #fffaea;
+  --color-midbeige: #ccc8bb;
+  --color-darkbeige: #727069;
+
+  --font-sans: var(--font-manrope), system-ui, sans-serif;
+  --font-display: "gallery_modernregular", var(--font-manrope), sans-serif;
+}
