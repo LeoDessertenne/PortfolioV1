@@ -46,10 +46,9 @@ export function buildHomeMetadata(locale: Locale): Metadata {
       canonical: localePath(locale, "home"),
       ...alternates("home"),
     },
-    icons: {
-      icon: "/Image/signature.png",
-      shortcut: "/Image/signature.png",
-    },
+    // Pas de bloc `icons` ici : src/app/icon.svg est detecte par convention de
+    // fichier et injecte le <link rel="icon">. Une declaration explicite
+    // l'emporterait sur la convention et masquerait l'icone.
     openGraph: {
       type: "profile",
       firstName: "Léo",
